@@ -1,0 +1,11 @@
+/node_modules
+/vendor
+/.idea
+npm-debug.log
+
+/www/mix-manifest.json
+/www/js
+/www/css
+/www/images
+/www/fonts
+/www/storage
