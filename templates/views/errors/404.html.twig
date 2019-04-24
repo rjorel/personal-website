@@ -1,0 +1,37 @@
+{% extends 'views/base.html.twig' %}
+
+{% block page_title %}
+    Ah tiens, une erreur est survenue..
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="row">
+            <div class="col text-center">
+                <h5>
+                    Il semblerait qu'une erreur se soit produite durant votre navigation.. mais vous avez de la
+                    chance,<br /> <b>tout est sous contrôle !</b>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src="/images/girl.png" class="img-fluid mr-3 mb-3 mx-auto d-block" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <p>
+                    Cela dit, même si je ne peux affirmer que la faute vous revienne, je le soupconne fortement.. parce
+                    que dans le cas contraire, cela signifierait que j'ai fait une erreur quelque part. Et je ne peux
+                    raisonnablement pas me mettre en accusation, puisqu'il est toujours plus simple de critiquer les
+                    autres.
+                </p>
+                <p>
+                    Mais bon, je vais vous accorder le bénéfice du doute, de toute façon j'avais prévu les aléas. Je
+                    vous prie donc maintenant de bien vouloir retourner sur les pages référencées dans le menu.
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

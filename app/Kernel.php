@@ -4,18 +4,21 @@ namespace App;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment;
 
 class Kernel
 {
-    private $services;
+    private $twig;
 
-    public function __construct($services = [])
+    public function __construct(Environment $twig)
     {
-        $this->services = $services;
+        $this->twig = $twig;
     }
 
     public function handle(Request $request): Response
     {
-        return new Response('Hello world!');
+        $content = $this->twig->render('views/pages/index.html.twig');
+
+        return new Response($content);
     }
 }

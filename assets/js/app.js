@@ -4,12 +4,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import RepositoryComponent from './components/RepositoryComponent';
 import hljs from 'highlight.js/lib/highlight';
+
+require('./bootstrap');
 
 window.Vue = Vue;
 
@@ -34,7 +34,7 @@ Vue.directive('highlightjs', {
             }
 
             hljs.highlightBlock(target);
-        })
+        });
     }
 });
 

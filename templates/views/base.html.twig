@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% spaceless %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="Raphael Jorel's website" />
+    <meta name="author" content="Raphael Jorel" />
+
+    <title>Raphael Jorel - {% block title %}Website{% endblock %}</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    {% block styles %}{% endblock %}
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            R.Jor-El
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#mainNavbar" aria-controls="mainNavbar"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav mr-auto">
+
+                {% set route = app.request.attributes.get('_route') %}
+
+                <li class="nav-item{{ route == '/skills' ? ' active' : '' }}">
+                    <a class="nav-link" href="/skills">Compétences</a>
+                </li>
+                <li class="nav-item{{ route == '/achievements' ? ' active' : '' }}">
+                    <a class="nav-link" href="/achievements">Réalisations</a>
+                </li>
+                <li class="nav-item{{ route == '/contact' ? ' active' : '' }}">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item{{ route == '/about' ? ' active' : '' }}">
+                    <a class="nav-link" href="/about">A propos</a>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link">&#9679;</span>
+                </li>
+                <li class="nav-item{{ route == '/repository' ? ' active' : '' }}">
+                    <a class="nav-link" href="/repository">Dépôt</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/rjorel" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.linkedin.com/in/raphaeljorel/"
+                       target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main id="app" class="container">
+    <div id="title" class="font-duality">
+        <h1>{% block page_title %}{% endblock %}</h1>
+    </div>
+
+    <div class="px-3">
+        {% block content %}{% endblock %}
+    </div>
+</main>
+
+<script src="{{ mix('/js/app.js') }}"></script>
+
+<script>
+    $(function () {
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+    });
+</script>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>
+{% endspaceless %}

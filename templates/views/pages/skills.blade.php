@@ -1,0 +1,252 @@
+@extends('layouts.app')
+
+@section('page_title', 'Compétences')
+
+@section('content')
+    <div class="row">
+        <div class="col">
+            <p>
+                Juger de ses propres compétences est toujours un exercice délicat, aussi vais-je seulement donner des
+                indications de mes expériences et utilisations des différents langages et technologies que je connais.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-custom">
+                <thead>
+                <tr>
+                    <th colspan="2">Langages</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="https://secure.php.net/" target="_blank">PHP</a>
+                    </td>
+                    <td>
+                        Le langage que je pratique quotidiennement depuis que je suis devenu actif (en mi-2016). Je l'ai
+                        beaucoup utilisé avec Laravel mais j'ai exploré aussi Symfony et je m'en sers des fois pour
+                        faire des petits scripts.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.python.org/" target="_blank">Python</a>
+                    </td>
+                    <td>
+                        Mon tout premier langage, si je ne prends pas en compte le BASIC et celui des calculettes CASIO.
+                        Je me tourne naturellement vers ce langage dès lors que je veux faire des scripts ou des petits
+                        programmes, ainsi que pour tout ce qui concerne le prototypage.
+                    </td>
+                </tr>
+                <tr>
+                    <td>JavaScript</td>
+                    <td>
+                        Clairement pas celui qui me donne le plus envie de programmer.. mais il est obligatoire dès que
+                        l'on veut rendre son site un peu réactif, donc je l'utilise pour tous mes développements web,
+                        qu'ils soient professionnels ou personnels.
+                    </td>
+                </tr>
+                <tr>
+                    <td>C/C++</td>
+                    <td>
+                        Le duo indétronable, souvent copié mais jamais égalé.. bien que n'ayant pas énormément travaillé
+                        en dehors de mon cursus avec, j'affectionne ces deux langages pour la liberté qu'ils accordent.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Java</td>
+                    <td>
+                        Bien que n'étant pas un grand fan de Java, je pense être capable de m'en servir honorablement.
+                        Ce langage est beaucoup abordé durant les études, et il m'est même apparu agréable quand j'ai
+                        découvert IntelliJ.
+                    </td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th colspan="2"><i>Frameworks</i></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="https://laravel.com/" target="_blank">Laravel</a>
+                    </td>
+                    <td>
+                        Ce merveilleux <i>framework</i> est à la base de tous mes développements professionnels. Je m'en
+                        sers aussi un peu personnellement et je trouve beaucoup de plaisir à travailler avec.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://angular.io/" target="_blank">Angular</a>
+                    </td>
+                    <td>
+                        Mon entreprise ayant eu besoin de produire une application réactive, j'ai eu à développer sous
+                        Angular. Mais même si TypeScript est utilisé, mon désintérêt pour JavaScript ne me pousse pas à
+                        approfondir cette technologie.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.djangoproject.com/" target="_blank">Django</a>
+                    </td>
+                    <td>
+                        J'ai eu l'occasion de toucher un peu à Django lors de mes recherches de solutions web pour mon
+                        entreprise actuelle. Bien que n'ayant pas une grande expérience du <i>framework</i>, je lui
+                        trouve pas mal de similarités avec Laravel.
+                    </td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th colspan="2">Base de données</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="https://www.mysql.com/" target="_blank">MySQL</a>
+                    </td>
+                    <td>
+                        MySQL est un système de gestion de bases de données très répandu, et souvent associé à PHP. Il
+                        est le système dont je me sers pour toutes mes applications qui nécessitent une base de données.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.sqlite.org/" target="_blank">SQLite</a>
+                    </td>
+                    <td>
+                        SQLite est particulièrement pratique pour tester des applications. Il m'est également utile de
+                        temps à autre pour faire des scripts qui nécessitent de manipuler des données.
+                    </td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th colspan="2">Bibliothèques</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="https://jquery.com/" target="_blank">JQuery</a>
+                    </td>
+                    <td>
+                        Cette bibliothèque est infiniment pratique pour simplifier pas mal de travail en JavaScript. Je
+                        m'en sers toujours sur les différentes applications web que je développe.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
+                    </td>
+                    <td>
+                        En ce qui concerne le <i>responsive design</i>, je ne me sers que de cette bibliothèque. Bien
+                        évidemment, le style du présent site repose dessus (version 4).
+                    </td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th colspan="2">IDEs / Editeurs</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="https://www.jetbrains.com/" target="_blank">Jetbrains</a>
+                    </td>
+                    <td>
+                        C'est bien simple, je suis ultra fan des IDEs de cette entreprise. Je me sers principalement de
+                        PhpStorm, PyCharm et WebStorm, mais tous les autres IDEs qu'ils développent sont excellents.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>
+                    </td>
+                    <td>
+                        Il faut bien avouer que Microsoft a su produire un IDE rapide et pratique. Je m'en sers
+                        généralement pour explorer des dossiers, lorsque je ne souhaite pas lancer un IDE plus lourd.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Vim</td>
+                    <td>
+                        Bien que je développe surtout avec les IDEs Jetbrains, Vim me sert pour éditer des fichiers
+                        seuls, ainsi que lors de mes séances d'administration système.
+                    </td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th colspan="2">Systèmes d'exploitation</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Linux</td>
+                    <td>
+                        Mon système d'exploitation de prédilection. Je passe le plus clair de mon temps dessus, pour le
+                        travail comme pour le loisir.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Windows</td>
+                    <td>
+                        Force est de constater que Windows garde une longueur d'avance sur Linux quant au <i>gaming</i>..
+                        j'ai donc un <i>dual boot</i> pour pouvoir profiter pleinement de ma ludothèque Steam.
+                    </td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr>
+                    <th colspan="2">Outils</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="https://git-scm.com/" target="_blank">Git</a>
+                    </td>
+                    <td>
+                        Le système de versionnage le plus populaire aujourd'hui et celui dont je me sers exclusivement.
+                        En ce qui concerne l'hébergement, je me sers de
+                        <a href="https://github.com/" target="_blank">GitHub</a>
+                        et de
+                        <a href="https://gitlab.com/" target="_blank">GitLab</a>,
+                        selon mes besoins.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.docker.com/" target="_blank">Docker</a>
+                    </td>
+                    <td>
+                        Bien que je ne sois pas encore à <i>containeriser</i> (joli anglissisme) toutes mes
+                        applications, cette technologie me sert de plus en plus, et de ce fait je commence à la
+                        connaître un peu.
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h5>
+                Mes compétences vous ont convaicu, vous pensez que je suis l'homme de la situation pour votre prochain
+                projet <i class="fa fa-grin-beam"></i> ?
+            </h5>
+            <p>
+                <i class="fa fa-arrow-right"></i> N'hésitez surtout pas à me contacter
+                <a href="{{ url('/contact') }}">ici</a>. <i>We can do ANYTHING !</i> <i class="fa fa-grin"></i>
+            </p>
+        </div>
+    </div>
+@endsection

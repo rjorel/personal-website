@@ -1,0 +1,29 @@
+@extends('layouts.app')
+
+@section('page_title', 'Dépôt de fichiers')
+
+@section('content')
+    <div class="row">
+        <div class="col">
+            <p>
+                Ceci est un simple dépôt où je mets mes projets que je ne compte plus retoucher. Il agrège donc pas mal
+                de programmes de différentes "époques" de ma vie de développeur, je vous prierais donc d'être indulgent.
+            </p>
+            <p>
+                Il s'agit principalement de programmes, mais je dépose aussi des rapports de projets, des dessins ou
+                autres, parce que le partage est toujours une bonne chose.
+            </p>
+            <p>
+                J'ai également quelques dépôts Git sur <a href="https://github.com/rjorel" target="_blank">GitHub</a>.
+            </p>
+            <p>
+                N'hésitez surtout pas à me contacter si vous désirez plus d'informations au sujet
+                d'un programme ou d'un concept que j'expose dans ce dépôt.
+            </p>
+        </div>
+    </div>
+
+    <div class="bg-white p-3 bordered">
+        <repository-component></repository-component>
+    </div>
+@endsection
