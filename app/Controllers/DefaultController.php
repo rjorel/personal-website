@@ -1,28 +1,36 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\View\Factory;
+namespace App\Controllers;
 
 class DefaultController extends Controller
 {
-    private $factory;
-
-    public function __construct(Factory $factory)
+    public function index()
     {
-        $this->factory = $factory;
+        return $this->render('views/pages/index.html.twig');
     }
 
-    public function index($page = null)
+    public function skills()
     {
-        if ($page === null) {
-            return view('index');
-        }
+        return $this->render('views/pages/skills.html.twig');
+    }
 
-        if ($this->factory->exists('pages.' . $page)) {
-            return view('pages.' . $page);
-        }
+    public function achievements()
+    {
+        return $this->render('views/pages/achievements.html.twig');
+    }
 
-        abort(404);
+    public function contact()
+    {
+        return $this->render('views/pages/contact.html.twig');
+    }
+
+    public function about()
+    {
+        return $this->render('views/pages/about.html.twig');
+    }
+
+    public function repository()
+    {
+        return $this->render('views/pages/repository.html.twig');
     }
 }

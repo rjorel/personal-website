@@ -1,13 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Symfony\Component\HttpFoundation\Request;
+use Twig\Environment;
 
-class Controller extends BaseController
+class Controller
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    private $request;
+    private $services;
+
+    public function __construct(Request $request, array $services = [])
+    {
+        $this->request = $request;
+        $this->services = $services;
+    }
+
+    protected function render($view, array $vars = [])
+    {
+        return $this->getTwigEnvironment()->render($view, $vars);
+    }
+
+    protected function getTwigEnvironment(): Environment
+    {
+        return $this->services['twig'];
+    }
 }

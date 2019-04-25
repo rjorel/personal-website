@@ -3,10 +3,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Kernel;
-use App\Twig\MixExtension;
 use Symfony\Component\HttpFoundation\Request;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 /**
  * Set debug for development purposes.
@@ -18,22 +15,18 @@ if ($debug) {
 }
 
 /**
- * Setup twig.
+ * Define app services.
  */
-$loader = new FilesystemLoader(__DIR__ . '/../templates');
-
-$twig = new Environment($loader, [
-    'cache' => __DIR__ . '/../var',
-    'debug' => $debug
-]);
-
-$twig->addExtension(new MixExtension(__DIR__ . '/../www'));
+$services = [
+    'router' => require __DIR__ . '/../bootstrap/router.php',
+    'twig'   => require __DIR__ . '/../bootstrap/twig.php'
+];
 
 /**
  * Handle incoming request.
  */
 $request = Request::createFromGlobals();
 
-$response = (new Kernel($twig))->handle($request);
+$response = (new Kernel($services))->handle($request);
 
 $response->send();

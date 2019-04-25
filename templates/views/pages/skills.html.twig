@@ -1,8 +1,10 @@
-@extends('layouts.app')
+{% extends 'views/base.html.twig' %}
 
-@section('page_title', 'Compétences')
+{% block page_title %}
+    Compétences
+{% endblock %}
 
-@section('content')
+{% block content %}
     <div class="row">
         <div class="col">
             <p>
@@ -245,8 +247,8 @@
             </h5>
             <p>
                 <i class="fa fa-arrow-right"></i> N'hésitez surtout pas à me contacter
-                <a href="{{ url('/contact') }}">ici</a>. <i>We can do ANYTHING !</i> <i class="fa fa-grin"></i>
+                <a href="/contact">ici</a>. <i>We can do ANYTHING !</i> <i class="fa fa-grin"></i>
             </p>
         </div>
     </div>
-@endsection
+{% endblock %}
