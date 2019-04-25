@@ -1,28 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use App\Mail\ContactMail;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+namespace App\Controllers;
 
 class ContactController extends Controller
 {
-    public function post(Request $request)
+    public function index()
     {
-        $this->validate($request, [
-            'name'    => 'required',
-            'email'   => 'required|email',
-            'subject' => 'required',
-            'message' => 'required',
+        return $this->render('views/pages/contact.html.twig');
+    }
+
+    public function send()
+    {
+        $headers = [
+            'Reply-To' => $this->request->get('email'),
+            'Subject'  => $this->request->get('subject')
+        ];
+
+        $content = $this->render('emails/contact.html.twig', [
+            'request' => $this->request
         ]);
 
-        Mail::to('raphael.jorel@laposte.net')->send(
-            new ContactMail($request)
-        );
+        mail('raphael.jorel@laposte.net', $this->request->get('subject'), $content, $headers);
 
-        return redirect()->to('/contact')->with(
-            'message', 'Le message a été correctement envoyé'
-        );
+        return $this->render('views/pages/contact.html.twig', [
+            'message' => 'Le message a été correctement envoyé'
+        ]);
     }
 }

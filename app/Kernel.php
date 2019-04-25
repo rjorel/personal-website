@@ -20,13 +20,22 @@ class Kernel
 
     public function handle(Request $request): Response
     {
-        $route = $this->findRoute($request);
+        $response = $this->sendRequest($request);
+
+        return $this->prepareResponse($response);
+    }
+
+    private function sendRequest(Request $request)
+    {
+        try {
+            $route = $this->findRoute($request);
+        } catch (RuntimeException $e) {
+            return $this->app['twig']->render('views/errors/404.html.twig');
+        }
 
         $controller = $this->instantiateController($request, $route);
 
-        $response = $this->runAction($controller, $route);
-
-        return $this->prepareResponse($response);
+        return $this->runAction($controller, $route);
     }
 
     private function findRoute(Request $request)
@@ -62,7 +71,7 @@ class Kernel
 
         if (!method_exists($controller, $action)) {
             throw new RuntimeException(
-                sprintf('No action "%s" for controller "%s"', $action, $controller)
+                sprintf('No action "%s" for controller "%s"', $action, get_class($controller))
             );
         }
 

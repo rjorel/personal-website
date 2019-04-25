@@ -19,11 +19,6 @@ class DefaultController extends Controller
         return $this->render('views/pages/achievements.html.twig');
     }
 
-    public function contact()
-    {
-        return $this->render('views/pages/contact.html.twig');
-    }
-
     public function about()
     {
         return $this->render('views/pages/about.html.twig');

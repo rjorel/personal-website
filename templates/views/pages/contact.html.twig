@@ -6,17 +6,11 @@
 
 {% block content %}
     <div>
-        {#        @if (session()->has('message'))#}
-        {#        <div class="alert alert-success text-center">#}
-        {#            {{ session()->get('message') }}#}
-        {#        </div>#}
-        {#        @endif#}
-
-        {#        @if ($errors->isNotEmpty())#}
-        {#        <div class="alert alert-danger text-center">#}
-        {#            Tous les champs sont obligatoires#}
-        {#        </div>#}
-        {#        @endif#}
+        {% if message is defined %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endif %}
 
         <p>
             Si vous souhaitez me contacter pour me demander un service ou des précisions sur une de mes réalisations,
@@ -36,7 +30,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Nom</label>
-                        <input type="text" name="name" class="form-control" />
+                        <input type="text" name="name" class="form-control" required />
                     </div>
                 </div>
             </div>
@@ -44,7 +38,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Adresse e-mail</label>
-                        <input type="email" name="email" class="form-control" />
+                        <input type="email" name="email" class="form-control" required />
                     </div>
                 </div>
             </div>
@@ -52,7 +46,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Sujet</label>
-                        <input type="text" name="subject" class="form-control" />
+                        <input type="text" name="subject" class="form-control" required />
                     </div>
                 </div>
             </div>
@@ -60,7 +54,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Message</label>
-                        <textarea name="message" rows="5" class="form-control"></textarea>
+                        <textarea name="message" rows="5" class="form-control" required></textarea>
                     </div>
                 </div>
             </div>
