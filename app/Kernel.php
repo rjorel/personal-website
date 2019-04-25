@@ -32,7 +32,7 @@ class Kernel
     private function findRoute(Request $request)
     {
         return $this->getRouter()->find(
-            $request->getRequestUri(), $request->getMethod()
+            $request->getPathInfo(), $request->getMethod()
         );
     }
 

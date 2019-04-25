@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class RepositoryController extends Controller
 {
-    const REPOSITORY_STORAGE_DIRECTORY = '/repository';
+    const REPOSITORY_STORAGE_DIRECTORY = '/storage';
 
     public function index()
     {
@@ -32,7 +32,7 @@ class RepositoryController extends Controller
     {
         try {
             return new File(
-                $this->getBasePath() . '/' . $path, $path
+                $this->getBasePath() . $path, $path
             );
         } catch (FileException $e) {
             //
@@ -45,7 +45,6 @@ class RepositoryController extends Controller
 
     private function getBasePath()
     {
-        return $this->app->getPublicPath()
-            . DIRECTORY_SEPARATOR . self::REPOSITORY_STORAGE_DIRECTORY;
+        return $this->app->getPublicPath() . self::REPOSITORY_STORAGE_DIRECTORY;
     }
 }

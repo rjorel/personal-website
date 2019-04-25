@@ -19,7 +19,7 @@
                     <a :href="file.storagePath" data-toggle="lightbox" data-gallery="gallery" v-if="file.isImage">
                         {{ file.name }}
                     </a>
-                     <a :href="file.storagePath" :download="file.name" v-else-if="file.isArchive">
+                    <a :href="file.storagePath" :download="file.name" v-else-if="file.isArchive">
                         {{ file.name }}
                     </a>
                     <a href="javascript:" @click="setRouterPath(file.relativePath)"
@@ -76,7 +76,7 @@
             return {
                 currentFilePath: this.$router.currentRoute.path,
                 currentFile: null
-            }
+            };
         },
 
         mounted() {
@@ -118,7 +118,7 @@
                 this.loadPath(to.path);
             }
         }
-    }
+    };
 </script>
 
 <style scoped>
