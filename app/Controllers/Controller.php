@@ -2,18 +2,19 @@
 
 namespace App\Controllers;
 
+use App\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment;
 
 class Controller
 {
-    private $request;
-    private $services;
+    protected $app;
+    protected $request;
 
-    public function __construct(Request $request, array $services = [])
+    public function __construct(Application $app, Request $request)
     {
+        $this->app = $app;
         $this->request = $request;
-        $this->services = $services;
     }
 
     protected function render($view, array $vars = [])
@@ -23,6 +24,6 @@ class Controller
 
     protected function getTwigEnvironment(): Environment
     {
-        return $this->services['twig'];
+        return $this->app['twig'];
     }
 }

@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Controllers;
 
-use App\Lib\File;
-use Illuminate\Http\Request;
+use App\File;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class RepositoryController extends Controller
 {
-    const REPOSITORY_STORAGE_DIRECTORY = '/storage/repository';
+    const REPOSITORY_STORAGE_DIRECTORY = '/repository';
 
-    public function index(Request $request)
+    public function index()
     {
         $path = $this->removeMultiPoints(
-            $request->get('p') ?: '/'
+            $this->request->get('p') ?: '/'
         );
 
         return [
@@ -46,6 +45,7 @@ class RepositoryController extends Controller
 
     private function getBasePath()
     {
-        return public_path(self::REPOSITORY_STORAGE_DIRECTORY);
+        return $this->app->getPublicPath()
+            . DIRECTORY_SEPARATOR . self::REPOSITORY_STORAGE_DIRECTORY;
     }
 }

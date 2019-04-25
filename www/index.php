@@ -15,18 +15,15 @@ if ($debug) {
 }
 
 /**
- * Define app services.
+ * Setup app.
  */
-$services = [
-    'router' => require __DIR__ . '/../bootstrap/router.php',
-    'twig'   => require __DIR__ . '/../bootstrap/twig.php'
-];
+$app = require __DIR__ . '/../bootstrap/app.php';
 
 /**
  * Handle incoming request.
  */
 $request = Request::createFromGlobals();
 
-$response = (new Kernel($services))->handle($request);
+$response = (new Kernel($app))->handle($request);
 
 $response->send();

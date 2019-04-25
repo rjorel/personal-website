@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Kernel
 {
-    private $services;
+    private $app;
 
-    public function __construct(array $services = [])
+    public function __construct(Application $app)
     {
-        $this->services = $services;
+        $this->app = $app;
     }
 
     public function handle(Request $request): Response
@@ -38,7 +38,7 @@ class Kernel
 
     private function getRouter(): Router
     {
-        return $this->services['router'];
+        return $this->app['router'];
     }
 
     private function instantiateController(Request $request, Route $route)
@@ -47,7 +47,7 @@ class Kernel
             $route->getController()
         );
 
-        return new $controller($request, $this->services);
+        return new $controller($this->app, $request);
     }
 
     private function getControllerClass(string $controller): string

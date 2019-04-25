@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core;
+namespace App;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
