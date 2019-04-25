@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Controllers;
 
-use Carbon\Carbon;
 use Symfony\Component\Finder\Finder;
 
 class SitemapController extends Controller
@@ -22,10 +21,10 @@ class SitemapController extends Controller
             self::$staticUrls, $this->getRepositoryUrls()
         );
 
-        return response()->view('sitemap', [
+        return $this->render('sitemap.xml.twig', [
             'urls' => $urls,
-            'date' => Carbon::now()->format('Y-m-d')
-        ])->header('Content-Type', 'text/xml');
+            'date' => date('Y-m-d')
+        ]);
     }
 
     private function getRepositoryUrls()
@@ -39,7 +38,7 @@ class SitemapController extends Controller
 
     private function getBasePath()
     {
-        return public_path(RepositoryController::REPOSITORY_STORAGE_DIRECTORY);
+        return $this->app->getPublicPath() . RepositoryController::REPOSITORY_STORAGE_DIRECTORY;
     }
 
     private function getDirectories()

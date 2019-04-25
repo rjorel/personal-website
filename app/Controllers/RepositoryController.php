@@ -11,6 +11,11 @@ class RepositoryController extends Controller
 
     public function index()
     {
+        return $this->render('views/pages/repository.html.twig');
+    }
+
+    public function file()
+    {
         $path = $this->removeMultiPoints(
             $this->request->get('p') ?: '/'
         );

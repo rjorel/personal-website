@@ -28,9 +28,4 @@ class DefaultController extends Controller
     {
         return $this->render('views/pages/about.html.twig');
     }
-
-    public function repository()
-    {
-        return $this->render('views/pages/repository.html.twig');
-    }
 }
