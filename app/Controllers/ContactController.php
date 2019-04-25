@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use Mailgun\Mailgun;
+
 class ContactController extends Controller
 {
     public function index()
@@ -11,19 +13,30 @@ class ContactController extends Controller
 
     public function send()
     {
-        $headers = [
-            'Reply-To' => $this->request->get('email'),
-            'Subject'  => $this->request->get('subject')
-        ];
+        $domain = getenv('MAILGUN_DOMAIN');
+        $apiVersion = getenv('MAILGUN_SECRET');
+        $from = getenv('MAIL_FROM_ADDRESS');
+        $to = 'raphael.jorel@laposte.net';
 
-        $content = $this->render('emails/contact.html.twig', [
-            'request' => $this->request
+        $mailer = new Mailgun($apiVersion);
+
+        $mailer->messages()->send($domain, [
+            'from'     => $from,
+            'to'       => $to,
+            'reply-to' => $this->request->get('email'),
+            'subject'  => $this->request->get('subject'),
+            'text'     => $this->getEmailContent()
         ]);
-
-        mail('raphael.jorel@laposte.net', $this->request->get('subject'), $content, $headers);
 
         return $this->render('views/pages/contact.html.twig', [
             'message' => 'Le message a été correctement envoyé'
+        ]);
+    }
+
+    private function getEmailContent()
+    {
+        return $this->render('emails/contact.html.twig', [
+            'request' => $this->request
         ]);
     }
 }
