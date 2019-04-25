@@ -1,14 +1,15 @@
-@extends('layouts.app')
+{% extends 'views/base.html.twig' %}
 
-@section('page_title', 'A mon propos')
+{% block page_title %}
+    A mon propos
+{% endblock %}
 
-@section('content')
+{% block content %}
     <div class="row">
         <div class="col">
             <div>
                 <div class="text-center">
-                    <img src="{{ asset('images/about/me.jpg') }}"
-                         class="img-fluid bordered mb-3 mr-3 float-md-left" />
+                    <img src="/images/about/me.jpg" class="img-fluid bordered mb-3 mr-3 float-md-left" />
                 </div>
                 <p>
                     Je me nomme Raphaël Jorel, et je suis né le 20 Juin 1993 à Brignoles (dans le Var).
@@ -37,8 +38,7 @@
             </div>
             <div>
                 <div class="text-center">
-                    <img src="{{ asset('images/about/goat.jpg') }}"
-                         class="img-fluid bordered mb-3 ml-3 float-md-right" />
+                    <img src="/images/about/goat.jpg" class="img-fluid bordered mb-3 ml-3 float-md-right" />
                 </div>
                 <p>
                     Mon intérêt pour l'informatique n'est aucunement lié à ma parenté. En effet, mon père est vigneron
@@ -52,8 +52,7 @@
             </div>
             <div>
                 <div class="text-center">
-                    <img src="{{ asset('images/about/brotherhood.jpg') }}"
-                         class="img-fluid bordered mb-3 mr-3 float-md-left" />
+                    <img src="/images/about/brotherhood.jpg" class="img-fluid bordered mb-3 mr-3 float-md-left" />
                 </div>
                 <p>
                     Je suis l'aîné de deux soeurs, la première étant plus jeune de 19 mois et la seconde de 7 ans. Ma
@@ -67,9 +66,9 @@
                     joue également de la guitare et de la basse, de façon très régulière. A la guitare, je pratique
                     surtout le chant, et à la basse j'accompagne principalement le groupe de louange de mon église tous
                     les Dimanches. Il m'arrive aussi de dessiner quelque fois (voici d'ailleurs
-                    <a href="{{ url('repository/#/drawings') }}">ici</a> quelques uns de mes dessins).
+                    <a href="/repository#/drawings">ici</a> quelques uns de mes dessins).
                 </p>
             </div>
         </div>
     </div>
-@endsection
+{% endblock %}

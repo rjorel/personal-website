@@ -1,20 +1,22 @@
-@extends('layouts.app')
+{% extends 'views/base.html.twig' %}
 
-@section('page_title', 'Un petit message ?')
+{% block page_title %}
+    Un petit message ?
+{% endblock %}
 
-@section('content')
+{% block content %}
     <div>
-        @if (session()->has('message'))
-            <div class="alert alert-success text-center">
-                {{ session()->get('message') }}
-            </div>
-        @endif
+        {#        @if (session()->has('message'))#}
+        {#        <div class="alert alert-success text-center">#}
+        {#            {{ session()->get('message') }}#}
+        {#        </div>#}
+        {#        @endif#}
 
-        @if ($errors->isNotEmpty())
-            <div class="alert alert-danger text-center">
-                Tous les champs sont obligatoires
-            </div>
-        @endif
+        {#        @if ($errors->isNotEmpty())#}
+        {#        <div class="alert alert-danger text-center">#}
+        {#            Tous les champs sont obligatoires#}
+        {#        </div>#}
+        {#        @endif#}
 
         <p>
             Si vous souhaitez me contacter pour me demander un service ou des précisions sur une de mes réalisations,
@@ -29,14 +31,12 @@
     </div>
 
     <div class="font-duality p-4 bg-light bordered border-radius-5 text-size-18">
-        <form method="POST" action="{{ url('/contact') }}">
-            {{ csrf_field() }}
-
+        <form method="POST" action="/contact">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label>Nom</label>
-                        <input type="text" name="name" value="{{ old('name') }}" class="form-control" />
+                        <input type="text" name="name" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Adresse e-mail</label>
-                        <input type="email" name="email" value="{{ old('email') }}" class="form-control" />
+                        <input type="email" name="email" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Sujet</label>
-                        <input type="text" name="subject" value="{{ old('subject') }}" class="form-control" />
+                        <input type="text" name="subject" class="form-control" />
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Message</label>
-                        <textarea name="message" rows="5" class="form-control">{{ old('message') }}</textarea>
+                        <textarea name="message" rows="5" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
@@ -76,4 +76,4 @@
             </div>
         </form>
     </div>
-@endsection
+{% endblock %}

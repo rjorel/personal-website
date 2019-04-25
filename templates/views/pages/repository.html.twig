@@ -1,8 +1,10 @@
-@extends('layouts.app')
+{% extends 'views/base.html.twig' %}
 
-@section('page_title', 'Dépôt de fichiers')
+{% block page_title %}
+    Dépôt de fichiers
+{% endblock %}
 
-@section('content')
+{% block content %}
     <div class="row">
         <div class="col">
             <p>
@@ -26,4 +28,4 @@
     <div class="bg-white p-3 bordered">
         <repository-component></repository-component>
     </div>
-@endsection
+{% endblock %}

@@ -1,8 +1,10 @@
-@extends('layouts.app')
+{% extends 'views/base.html.twig' %}
 
-@section('page_title', 'Réalisations')
+{% block page_title %}
+    Réalisations
+{% endblock %}
 
-@section('content')
+{% block content %}
     <div class="row">
         <div class="col">
             <p>
@@ -22,8 +24,7 @@
     </div>
     <div class="row">
         <div class="col-lg col-md-12">
-            <img src="{{ asset('images/achievements/domaine-jorel.jpg') }}"
-                 class="img-fluid bordered mb-2 mx-auto d-block" />
+            <img src="/images/achievements/domaine-jorel.jpg" class="img-fluid bordered mb-2 mx-auto d-block" />
 
             <table class="table table-custom">
                 <tr>
@@ -67,8 +68,7 @@
     </div>
     <div class="row">
         <div class="col-lg col-md-12">
-            <img src="{{ asset('images/achievements/self-innov.jpg') }}"
-                 class="img-fluid bordered mb-2 mx-auto d-block" />
+            <img src="/images/achievements/self-innov.jpg" class="img-fluid bordered mb-2 mx-auto d-block" />
 
             <table class="table table-custom">
                 <tr>
@@ -123,8 +123,7 @@
     </div>
     <div class="row">
         <div class="col-lg col-md-12">
-            <img src="{{ asset('images/achievements/fery-consulting.jpg') }}"
-                 class="img-fluid bordered mb-2 mx-auto d-block" />
+            <img src="/images/achievements/fery-consulting.jpg" class="img-fluid bordered mb-2 mx-auto d-block" />
 
             <table class="table table-custom">
                 <tr>
@@ -154,4 +153,4 @@
             </p>
         </div>
     </div>
-@endsection
+{% endblock %}
