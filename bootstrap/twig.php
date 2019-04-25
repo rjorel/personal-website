@@ -8,7 +8,7 @@ $loader = new FilesystemLoader(__DIR__ . '/../templates');
 
 $twig = new Environment($loader, [
     'cache' => __DIR__ . '/../var',
-    'debug' => $debug
+    'debug' => getenv('APP_ENV') == 'local'
 ]);
 
 $twig->addExtension(new MixExtension(__DIR__ . '/../www'));
