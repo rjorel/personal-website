@@ -2,32 +2,33 @@
 
 namespace App\Controllers;
 
+use App\Route;
 use Symfony\Component\Finder\Finder;
 
 class SitemapController extends Controller
 {
-    private static $staticUrls = [
-        '/',
-        '/about',
-        '/achievement',
-        '/contact',
-        '/repository',
-        '/skills',
-    ];
-
     public function index()
     {
-        $urls = array_merge(
-            self::$staticUrls, $this->getRepositoryUrls()
+        $uris = array_merge(
+            $this->getRouterUris(), $this->getRepositoryUris()
         );
 
         return $this->render('sitemap.xml.twig', [
-            'urls' => $urls,
+            'uris' => $uris,
             'date' => date('Y-m-d')
         ]);
     }
 
-    private function getRepositoryUrls()
+    private function getRouterUris()
+    {
+        return array_unique(
+            array_map(function (Route $route) {
+                return $route->getUri();
+            }, $this->getRouter()->getRoutes())
+        );
+    }
+
+    private function getRepositoryUris()
     {
         $basePath = $this->getBasePath();
 

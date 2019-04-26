@@ -16,7 +16,7 @@ class RouteServiceProvider extends ServiceProvider
         ['/contact', 'POST', 'ContactController', 'send'],
         ['/repository', 'GET', 'RepositoryController', 'index'],
         ['/repository/file', 'GET', 'RepositoryController', 'file'],
-        ['/sitemap', 'GET', 'SitemapController', 'index'],
+        ['/sitemap\.xml', 'GET', 'SitemapController', 'index'],
     ];
 
     public function register()

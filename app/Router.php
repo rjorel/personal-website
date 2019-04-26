@@ -13,6 +13,11 @@ class Router
         $this->routes[] = $route;
     }
 
+    public function getRoutes(): array
+    {
+        return $this->routes;
+    }
+
     public function find($uri, $method): Route
     {
         $routes = $this->filterRoutesForUri(
