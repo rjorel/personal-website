@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Routing;
+namespace App;
 
 class Route
 {
@@ -20,22 +20,22 @@ class Route
         $this->action = $action;
     }
 
-    public function getUri(): string
+    public function getUri()
     {
         return $this->uri;
     }
 
-    public function getMethod(): string
+    public function getMethod()
     {
         return $this->method;
     }
 
-    public function getController(): string
+    public function getController()
     {
         return $this->controller;
     }
 
-    public function getAction(): string
+    public function getAction()
     {
         return $this->action;
     }

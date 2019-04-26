@@ -2,8 +2,20 @@
 
 namespace App;
 
-class Application implements \ArrayAccess
+use App\Providers\MailServiceProvider;
+use App\Providers\RouteServiceProvider;
+use App\Providers\ServiceProvider;
+use App\Providers\TwigServiceProvider;
+use ArrayAccess;
+
+class Application implements ArrayAccess
 {
+    private static $providers = [
+        MailServiceProvider::class,
+        RouteServiceProvider::class,
+        TwigServiceProvider::class
+    ];
+
     private $path;
 
     private $services = [];
@@ -11,9 +23,28 @@ class Application implements \ArrayAccess
     public function __construct($path)
     {
         $this->path = $path;
+
+        $this->boot();
     }
 
-    public function getPath($path = null)
+    private function boot()
+    {
+        foreach (self::$providers as $provider) {
+            $this->instantiateProvider($provider)->register();
+        }
+    }
+
+    private function instantiateProvider($class): ServiceProvider
+    {
+        return new $class($this);
+    }
+
+    public function getCachePath()
+    {
+        return $this->getPath('var');
+    }
+
+    private function getPath($path = null)
     {
         return $this->path .
             ($path ? (DIRECTORY_SEPARATOR . $path) : '');
@@ -22,6 +53,11 @@ class Application implements \ArrayAccess
     public function getPublicPath()
     {
         return $this->getPath('www');
+    }
+
+    public function getTemplatePath()
+    {
+        return $this->getPath('templates');
     }
 
     public function offsetExists($offset)

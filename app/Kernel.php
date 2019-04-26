@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Routing\Route;
-use App\Routing\Router;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

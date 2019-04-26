@@ -2,6 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Application;
 use App\Kernel;
 use Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,9 +21,11 @@ if (getenv('APP_ENV') == 'local') {
 }
 
 /**
- * Setup app.
+ * Instantiate app.
  */
-$app = require __DIR__ . '/../bootstrap/app.php';
+$app = new Application(
+    realpath(__DIR__ . '/..')
+);
 
 /**
  * Handle incoming request.
