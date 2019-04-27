@@ -8,4 +8,7 @@ npm-debug.log
 /www/css
 /www/images
 /www/fonts
-/www/storage
+/www/repository-files
+
+.env
+Envoy.blade.php
