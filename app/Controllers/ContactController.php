@@ -24,9 +24,13 @@ class ContactController extends Controller
 
     private function buildMessage()
     {
-        return (new Swift_Message($this->request->get('subject')))
+        $subject = $this->request->get('subject');
+        $email = $this->request->get('email');
+
+        return (new Swift_Message($subject))
             ->setFrom($this->getFromAddress())
             ->setTo($this->getToAddress())
+            ->setReplyTo($email)
             ->setBody($this->getBodyContent())
             ->setContentType('text/html');
     }
