@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Application;
 use App\Router;
+use Swift_SendmailTransport;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment;
 
@@ -28,7 +29,7 @@ class Controller
         return $this->app['twig'];
     }
 
-    protected function getMailer(): \Swift_SmtpTransport
+    protected function getMailer(): Swift_SendmailTransport
     {
         return $this->app['mailer'];
     }
