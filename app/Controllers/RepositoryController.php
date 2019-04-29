@@ -20,11 +20,19 @@ class RepositoryController extends Controller
             $this->request->get('p') ?: '/'
         );
 
+        $file = $this->getFile($path);
+
         return [
-            'currentFile' => $this
-                ->getFile($path)
-                ->setStorageDirectory(self::REPOSITORY_STORAGE_DIRECTORY)
-                ->toArray()
+            'currentFile' => $file
+                    ->setStorageDirectory(self::REPOSITORY_STORAGE_DIRECTORY)
+                    ->toArray()
+                + [
+                    'files' => array_map(function (File $file) {
+                        return $file
+                            ->setStorageDirectory(self::REPOSITORY_STORAGE_DIRECTORY)
+                            ->toArray();
+                    }, $file->getChildFiles())
+                ]
         ];
     }
 

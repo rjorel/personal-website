@@ -2,10 +2,11 @@
 
 namespace App;
 
+use SplFileInfo;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-class File extends \SplFileInfo
+class File extends SplFileInfo
 {
     const HTML_DESCRIPTION_FILE = '.README.html';
 
@@ -20,9 +21,7 @@ class File extends \SplFileInfo
             throw new FileException;
         }
 
-        $this->relativePath = $this->removeDuplicatedSlashes(
-            $relativePath
-        );
+        $this->relativePath = $this->removeDuplicatedSlashes($relativePath);
     }
 
     private function removeDuplicatedSlashes($path)
@@ -30,9 +29,9 @@ class File extends \SplFileInfo
         return str_replace('//', '/', $path);
     }
 
-    public function toArray($retrieveFiles = true)
+    public function toArray()
     {
-        $properties = [
+        return [
             'name'        => $this->getFilename(),
             'extension'   => $this->getExtension(),
             'description' => $this->getHtmlDescription(),
@@ -47,19 +46,6 @@ class File extends \SplFileInfo
             'isImage'   => $this->isImage(),
             'isPdf'     => $this->isPdf()
         ];
-
-        if ($retrieveFiles) {
-            $properties += [
-                'files' => array_map(function (\SplFileInfo $file) {
-                    return $this
-                        ->newChildFile($file->getFilename())
-                        ->setStorageDirectory($this->storageDirectory)
-                        ->toArray(false);
-                }, $this->getFiles())
-            ];
-        }
-
-        return $properties;
     }
 
     public function getHtmlDescription()
@@ -73,7 +59,7 @@ class File extends \SplFileInfo
         return $this->minifyHtml($file->read());
     }
 
-    public function newChildFile($filename)
+    private function newChildFile($filename)
     {
         return new File(
             $this->getRealPath() . DIRECTORY_SEPARATOR . $filename,
@@ -146,12 +132,21 @@ class File extends \SplFileInfo
         return $this;
     }
 
-    public function getFiles()
+    public function getChildFiles()
     {
         if (!$this->isDir()) {
             return [];
         }
 
+        return array_map(function (SplFileInfo $file) {
+            return $this->newChildFile(
+                $file->getFilename()
+            );
+        }, $this->getChildFileInfo());
+    }
+
+    private function getChildFileInfo()
+    {
         $finder = Finder::create()
             ->depth('== 0')
             ->in($this->getRealPath())
