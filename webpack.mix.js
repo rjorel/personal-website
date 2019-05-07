@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 /*
  |--------------------------------------------------------------------------
@@ -10,6 +11,12 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+
+mix.webpackConfig({
+    plugins: [
+        new CompressionPlugin()
+    ]
+});
 
 mix
     .setPublicPath('www')
