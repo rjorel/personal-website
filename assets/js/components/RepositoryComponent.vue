@@ -16,7 +16,7 @@
                 <li v-for="(file, path) of currentFile.files" :key="path" class="list-none mb-1">
                     <img :src="'/images/repository/' + getIconName(file) + '.png'" :alt="getIconName(file)" />
 
-                    <a :href="file.storagePath" data-toggle="lightbox" data-gallery="gallery" v-if="file.isImage">
+                    <a :href="file.storagePath" data-lightbox="lightbox" v-if="file.isImage">
                         {{ file.name }}
                     </a>
                     <a :href="file.storagePath" :download="file.name" v-else-if="file.isArchive">

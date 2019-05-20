@@ -91,15 +91,6 @@
 
 <script src="{{ mix('/js/app.js') }}"></script>
 
-<script>
-    $(function () {
-        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
-            event.preventDefault();
-            $(this).ekkoLightbox();
-        });
-    });
-</script>
-
 {% block scripts %}{% endblock %}
 </body>
 </html>

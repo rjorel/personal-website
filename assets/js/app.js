@@ -9,8 +9,7 @@ import VueRouter from 'vue-router';
 import RepositoryComponent from './components/RepositoryComponent';
 import hljs from 'highlight.js/lib/highlight';
 
-require('./bootstrap');
-
+window.axios = require('axios');
 window.Vue = Vue;
 
 /**
@@ -50,5 +49,3 @@ hljs.registerLanguage('makefile', require('highlight.js/lib/languages/makefile')
 hljs.registerLanguage('ocaml', require('highlight.js/lib/languages/ocaml'));
 hljs.registerLanguage('prolog', require('highlight.js/lib/languages/prolog'));
 hljs.registerLanguage('python', require('highlight.js/lib/languages/python'));
-
-require('ekko-lightbox');
