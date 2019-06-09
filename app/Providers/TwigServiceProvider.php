@@ -17,7 +17,9 @@ class TwigServiceProvider extends ServiceProvider
             'debug' => getenv('APP_ENV') != 'production'
         ]);
 
-        $twig->addExtension(new MixExtension($this->app->getPublicPath()));
+        $twig->addExtension(
+            new MixExtension($this->app->getPublicPath())
+        );
 
         $this->app['twig'] = $twig;
     }
