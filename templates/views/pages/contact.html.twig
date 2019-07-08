@@ -5,24 +5,22 @@
 {% endblock %}
 
 {% block content %}
-    <div>
-        {% if message is defined %}
-            <div class="alert alert-success text-center">
-                {{ message }}
-            </div>
-        {% endif %}
+    {% if message is defined %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endif %}
 
-        <p>
-            Si vous souhaitez me contacter pour me demander un service ou des précisions sur une de mes réalisations,
-            veuillez utiliser ce formulaire, ou votre client de messagerie préféré en cliquant
-            <a href="mailto:raphael.jorel@laposte.net">ici</a>.
-        </p>
-        <p>
-            Je suis ouvert également à toutes remarques et tous commentaires (constructifs) concernant le présent site,
-            donc n'hésitez pas à me communiquer vos avis. D'autant plus si vous trouvez que ce site est particulièrement
-            génial, cela va sans dire <i class="fa fa-grin-beam"></i>.
-        </p>
-    </div>
+    <p>
+        Si vous souhaitez me contacter pour me demander un service ou des précisions sur une de mes réalisations,
+        veuillez utiliser ce formulaire, ou votre client de messagerie préféré en cliquant
+        <a href="mailto:raphael.jorel@laposte.net">ici</a>.
+    </p>
+    <p>
+        Je suis ouvert également à toutes remarques et tous commentaires (constructifs) concernant le présent site,
+        donc n'hésitez pas à me communiquer vos avis. D'autant plus si vous trouvez que ce site est particulièrement
+        génial, cela va sans dire 😁.
+    </p>
 
     <div class="font-duality p-4 bg-light bordered border-radius-5 text-size-18">
         <form method="POST" action="/contact">
