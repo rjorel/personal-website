@@ -5,7 +5,7 @@ namespace App\Twig;
 use Twig\Cache\FilesystemCache;
 
 // Inspired by http://aknosis.com/2012/10/02/twig-cache-file-permissions/
-class CustomCache extends FilesystemCache
+class CustomFileCache extends FilesystemCache
 {
     const CUSTOM_UMASK = 0002;
     const DIRECTORY_PERMISSION = 0777;
