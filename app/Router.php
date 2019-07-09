@@ -34,8 +34,8 @@ class Router
             );
         }
 
-        // Return last route, to give a logical priority during route registration.
-        return end($finalRoutes);
+        // Return first route, to give a logical priority during route registration.
+        return array_shift($finalRoutes);
     }
 
     private function filterRoutesForUri(array $routes, $uri): array
