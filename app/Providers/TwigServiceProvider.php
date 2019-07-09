@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Twig\CustomCache;
 use App\Twig\MixExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -13,7 +14,9 @@ class TwigServiceProvider extends ServiceProvider
         $loader = new FilesystemLoader($this->app->getTemplatePath());
 
         $twig = new Environment($loader, [
-            'cache' => $this->app->getCachePath(),
+            'cache' => new CustomCache(
+                $this->app->getCachePath()
+            ),
             'debug' => getenv('APP_ENV') != 'production'
         ]);
 
