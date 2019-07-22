@@ -18,14 +18,12 @@ const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 mix.webpackConfig({
     plugins: [
         new CompressionPlugin(),
-
         new CopyWebpackPlugin([
             {
                 from: 'assets/img',
                 to: 'images'
             }
         ]),
-
         new ImageminWebpWebpackPlugin({
             overrideExtension: false
         })

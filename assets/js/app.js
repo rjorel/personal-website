@@ -9,6 +9,11 @@ import VueRouter from 'vue-router';
 import RepositoryComponent from './components/RepositoryComponent';
 import hljs from 'highlight.js/lib/highlight';
 
+window.Popper = require('popper.js').default;
+window.$ = window.jQuery = require('jquery');
+
+require('bootstrap');
+
 window.axios = require('axios');
 window.Vue = Vue;
 
