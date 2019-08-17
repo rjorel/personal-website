@@ -28,21 +28,21 @@ class ContactController extends Controller
         $email = $this->request->get('email');
 
         return (new Swift_Message($subject))
-            ->setFrom($this->getFromAddress())
-            ->setTo($this->getToAddress())
+            ->setFrom($this->getSenderAddress())
+            ->setTo($this->getRecipientAddress())
             ->setReplyTo($email)
             ->setBody($this->getBodyContent())
             ->setContentType('text/html');
     }
 
-    private function getFromAddress()
+    private function getSenderAddress()
     {
         return [
             getenv('MAIL_FROM_ADDRESS') => getenv('MAIL_FROM_NAME')
         ];
     }
 
-    private function getToAddress()
+    private function getRecipientAddress()
     {
         return [
             'raphael.jorel@laposte.net' => 'Me'
