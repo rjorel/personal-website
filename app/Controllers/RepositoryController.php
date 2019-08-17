@@ -9,18 +9,20 @@ class RepositoryController extends Controller
 {
     const REPOSITORY_STORAGE_DIRECTORY = '/repository-files';
 
-    public function index()
+    public function index($path = null)
     {
-        return $this->render('views/pages/repository.html.twig');
+        return $this->render('views/pages/repository.html.twig', [
+            'path' => $path
+        ]);
     }
 
-    public function file()
+    public function getFile()
     {
         $path = $this->removeMultiPoints(
             $this->request->get('p') ?: '/'
         );
 
-        $file = $this->getFile($path);
+        $file = $this->getFileFromPath($path);
 
         return [
             'currentFile' => $file
@@ -41,7 +43,7 @@ class RepositoryController extends Controller
         return preg_replace('/\.+/', '.', $path);
     }
 
-    private function getFile($path)
+    private function getFileFromPath($path)
     {
         try {
             return new File(

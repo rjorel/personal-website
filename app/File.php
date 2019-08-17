@@ -122,7 +122,7 @@ class File extends SplFileInfo
 
     public function getStoragePath()
     {
-        return $this->storageDirectory . '/' . $this->getRelativePath();
+        return $this->storageDirectory . $this->getRelativePath();
     }
 
     public function setStorageDirectory($directory)
