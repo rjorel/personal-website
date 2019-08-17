@@ -35,7 +35,7 @@ server.
 ### Twig extension
 I use Laravel mix to compile CSS and JS files. In production, result files are minified and versioned, but Twig does not
 natively include an extension to handle mix output. Twig mix extension is inspired by Laravel `Mix` 
-[class](https://github.com/laravel/framework/blob/5.8/src/Illuminate/Foundation/Mix.php).
+[class](https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Mix.php).
 
 ### Repository
 Repository uses Vue to be interactive and avoid page reloading for each visited file or directory. Information about the
@@ -47,4 +47,4 @@ generate the sitemap. Unfortunately, this feature does not work for local develo
 as defined in `composer.json` file, can not handle URLs with dots.
 
 ### No tests
-Yes, I know, that's really (really) bad.. but for a website, should I do test something ? Maybe not..
+Yes, I know, that's really (really) bad.. but for a website, should I do test something? Maybe not..
