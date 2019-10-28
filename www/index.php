@@ -10,8 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Load environment variables.
  */
-$dotenv = Dotenv::create(__DIR__ . '/..');
-$dotenv->load();
+(Dotenv::create(__DIR__ . '/..'))->safeLoad();
 
 /**
  * Set debug for development purposes.
