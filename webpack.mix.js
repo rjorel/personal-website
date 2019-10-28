@@ -1,9 +1,5 @@
 const mix = require('laravel-mix');
 
-const CompressionPlugin = require('compression-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -15,25 +11,11 @@ const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
  |
  */
 
-mix.webpackConfig({
-    plugins: [
-        new CompressionPlugin(),
-        new CopyWebpackPlugin([
-            {
-                from: 'assets/img',
-                to: 'images'
-            }
-        ]),
-        new ImageminWebpWebpackPlugin({
-            overrideExtension: false
-        })
-    ]
-});
-
 mix
     .setPublicPath('www')
     .sass('assets/sass/app.scss', 'www/css')
-    .js('assets/js/app.js', 'www/js');
+    .js('assets/js/app.js', 'www/js')
+    .copyDirectory('assets/img', 'www/images');
 
 if (mix.inProduction()) {
     mix.version();
