@@ -15,5 +15,8 @@
 .env
 .env.example
 .gitignore
+deploy.sh
 docker-compose.yml
 README.md
+
+*.tar

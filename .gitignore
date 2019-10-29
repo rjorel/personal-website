@@ -11,4 +11,6 @@ npm-debug.log
 /www/repository-files
 
 .env
-Envoy.blade.php
+deploy.sh
+
+*.tar
