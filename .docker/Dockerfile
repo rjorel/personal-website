@@ -38,8 +38,6 @@ RUN set -ex; \
         sed -i 's/;clear_env = no/clear_env = no/' /etc/php7/php-fpm.d/www.conf; \
         echo "Europe/Paris" > /etc/timezone
 
-EXPOSE 80
-
 COPY .docker/entrypoint.sh .docker/wrapper.sh /
 RUN chmod +x /entrypoint.sh /wrapper.sh
 
