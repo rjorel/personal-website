@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Providers\MailServiceProvider;
 use App\Providers\RouteServiceProvider;
 use App\Providers\ServiceProvider;
 use App\Providers\TwigServiceProvider;
@@ -11,7 +10,6 @@ use ArrayAccess;
 class Application implements ArrayAccess
 {
     private static $providers = [
-        MailServiceProvider::class,
         RouteServiceProvider::class,
         TwigServiceProvider::class
     ];

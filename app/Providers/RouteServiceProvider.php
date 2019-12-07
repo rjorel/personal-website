@@ -12,8 +12,6 @@ class RouteServiceProvider extends ServiceProvider
         ['/skills', 'GET', 'DefaultController', 'skills'],
         ['/achievements', 'GET', 'DefaultController', 'achievements'],
         ['/about', 'GET', 'DefaultController', 'about'],
-        ['/contact', 'GET', 'ContactController', 'index'],
-        ['/contact', 'POST', 'ContactController', 'send'],
         ['/repository-file', 'GET', 'RepositoryController', 'getFile'],
         ['/repository(/.*)?', 'GET', 'RepositoryController', 'index'],
         ['/sitemap\.xml', 'GET', 'SitemapController', 'index'],
