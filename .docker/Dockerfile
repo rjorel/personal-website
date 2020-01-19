@@ -32,10 +32,9 @@ RUN set -ex; \
         rm -rf /tmp/*
 
 RUN set -ex; \
-        sed -i 's/#gzip on/gzip on/' /etc/nginx/nginx.conf; \
-        sed -i 's/memory_limit = .*/memory_limit = 256M/' /etc/php7/php.ini; \
-        sed -i "s/^;date.timezone =$/date.timezone = \"Europe\/Paris\"/" /etc/php7/php.ini; \
-        sed -i 's/;clear_env = no/clear_env = no/' /etc/php7/php-fpm.d/www.conf; \
+        sed -i 's/memory_limit.*/memory_limit = 256M/' /etc/php7/php.ini; \
+        sed -i "s/;date\.timezone.*/date\.timezone = \"Europe\/Paris\"/" /etc/php7/php.ini; \
+        sed -i "s/;opcache\.validate_timestamps.*/opcache\.validate_timestamps = 0/" /etc/php7/php.ini; \
         echo "Europe/Paris" > /etc/timezone
 
 COPY .docker/entrypoint.sh .docker/wrapper.sh /
