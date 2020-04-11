@@ -1,9 +1,22 @@
+FROM node:12-alpine AS builder
+
+COPY ./package.json ./webpack.mix.js ./yarn.lock /app/
+COPY ./assets/ /app/assets/
+
+WORKDIR /app
+
+RUN set -ex; \
+        yarn install --silent; \
+        yarn run production --silent
+
+
 FROM alpine
 
 COPY . /srv/app
 WORKDIR /srv/app
 
 COPY .docker/vhost.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/www /srv/app/www
 
 RUN set -ex; \
         apk add --update --quiet --no-cache \
@@ -18,17 +31,10 @@ RUN set -ex; \
             php7-tokenizer \
             php7-zip; \
         apk add --quiet --no-cache --virtual .build-deps \
-            composer \
-            yarn; \
-        composer install --no-dev --no-interaction --no-scripts --prefer-dist --quiet; \
-        composer clear-cache --quiet; \
-        yarn install --silent; \
-        yarn run production --silent; \
-        yarn cache clean --silent; \
+            composer; \
+        composer install --quiet --no-dev --no-interaction --no-scripts --no-cache --prefer-dist; \
         mkdir -p /run/nginx; \
-        apk del --quiet .build-deps; \
-        rm -rf node_modules/; \
-        rm -rf /tmp/*
+        apk del --quiet .build-deps
 
 RUN set -ex; \
         sed -i 's/memory_limit.*/memory_limit = 256M/' /etc/php7/php.ini; \
