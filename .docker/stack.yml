@@ -6,8 +6,23 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
-    volumes:
-      - ${APP_REPOSITORY_DIRECTORY}:/srv/app/www/repository-files
-    ports:
-      - :80
+      labels:
+        - traefik.enable=true
+        - traefik.frontend.rule=Host:${APP_HOSTNAME}
+        - traefik.frontend.passHostHeader=true
+        - traefik.frontend.headers.browserXSSFilter=true
+        - traefik.frontend.headers.contentTypeNosniff=true
+        - traefik.frontend.headers.customFrameOptionsValue=SAMEORIGIN
+        - traefik.docker.network=${TRAEFIK_NETWORK}
+        - traefik.port=80
     env_file: ${APP_ENV_FILE}
+    volumes:
+      - ${APP_REPOSITORY_DIR}:/srv/app/www/repository-files
+    networks:
+      - traefik_network
+      - default
+
+networks:
+  traefik_network:
+    name: ${TRAEFIK_NETWORK}
+    external: true
