@@ -2,5 +2,5 @@
 
 set -e
 
-php-fpm7 -D
+php-fpm -D
 nginx -g 'daemon off;'

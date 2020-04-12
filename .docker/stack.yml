@@ -17,7 +17,7 @@ services:
         - traefik.port=80
     env_file: ${APP_ENV_FILE}
     volumes:
-      - ${APP_REPOSITORY_DIR}:/srv/app/www/repository-files
+      - ${APP_REPOSITORY_DIR}:/srv/www/repository-files
     networks:
       - traefik_network
       - default
