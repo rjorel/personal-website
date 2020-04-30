@@ -87,11 +87,9 @@
 
         methods: {
             loadPath(path) {
-                axios
-                    .get(this._getFileUrl(path))
-                    .then((file) => {
-                        this.currentFile = file.data.currentFile;
-                    });
+                fetch(this._getFileUrl(path))
+                    .then((response) => response.json())
+                    .then((data) => this.currentFile = data.currentFile);
             },
 
             _getFileUrl(path) {
