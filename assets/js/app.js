@@ -9,7 +9,7 @@ import VueRouter from 'vue-router';
 import RepositoryComponent from './components/RepositoryComponent';
 import hljs from 'highlight.js/lib/highlight';
 
-require('bootstrap/js/src/collapse');
+require('./bs-collapse');
 
 window.Vue = Vue;
 
