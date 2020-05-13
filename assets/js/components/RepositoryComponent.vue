@@ -4,7 +4,7 @@
             <a class="mr-2" @click="setRouterPath(currentFile.relativeParentPath)">
                 <img src="/images/repository/colt.png" class="rotate-hover-10" />
             </a>
-            <span class="p-2 text-size-20 jumbotron">
+            <span class="p-2 font-size-20 jumbotron">
                 {{ currentFile.relativePath }}
             </span>
         </div>

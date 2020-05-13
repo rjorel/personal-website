@@ -3,4 +3,58 @@
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 @import "~highlight.js/styles/idea";
-@import "custom";
+
+$brown-color: #412004;
+
+@font-face {
+    font-family: 'duality';
+    src: url('../fonts/Duality-Regular.ttf');
+}
+
+body {
+    background: url('../img/background.jpg') no-repeat fixed;
+    background-size: cover;
+}
+
+main {
+    padding: 5rem;
+    background: url('../img/sheet.jpg');
+    min-height: calc(95vh);
+}
+
+.table-brown th {
+    color: #fff;
+    background-color: $brown-color;
+    border-color: $brown-color;
+}
+
+.table-brown th,
+.table-brown td,
+.table-brown > thead th,
+.table-brown > tbody td {
+    border: 1px solid $brown-color;
+}
+
+.table-brown td {
+    background: #fff;
+}
+
+.font-size-20 {
+    font-size: 20px;
+}
+
+.font-duality {
+    font-family: duality, serif;
+}
+
+.bg-brown {
+    background-color: $brown-color;
+}
+
+.border-brown {
+    border-color: $brown-color !important;
+}
+
+.border-2 {
+    border-width: 2px !important;
+}

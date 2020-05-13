@@ -20,9 +20,9 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md navbar-dark">
+<nav class="navbar navbar-expand-md navbar-dark font-duality border-0 bg-brown" style="font-size: 18px;">
     <div class="container">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/" style="font-size: 28px;">
             R.Jor-El
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -75,11 +75,11 @@
 </nav>
 
 <main id="app" class="container">
-    <div id="title" class="font-duality">
+    <div class="font-duality text-center border-top border-bottom border-brown border-2">
         <h1>{% block page_title %}{% endblock %}</h1>
     </div>
 
-    <div class="px-3">
+    <div class="mt-5 px-3">
         {% block content %}{% endblock %}
     </div>
 </main>
