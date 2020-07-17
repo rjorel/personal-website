@@ -7,7 +7,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import RepositoryComponent from './components/RepositoryComponent';
-import hljs from 'highlight.js/lib/highlight';
+import hljs from 'highlight.js/lib/core';
 
 require('bootstrap/js/src/collapse');
 
@@ -44,7 +44,7 @@ new Vue({
 
 hljs.registerLanguage('casio', require('highlight.js/lib/languages/basic'));
 hljs.registerLanguage('brainfuck', require('highlight.js/lib/languages/brainfuck'));
-hljs.registerLanguage('cpp', require('highlight.js/lib/languages/cpp'));
+hljs.registerLanguage('c-like', require('highlight.js/lib/languages/c-like'));
 hljs.registerLanguage('lisp', require('highlight.js/lib/languages/lisp'));
 hljs.registerLanguage('makefile', require('highlight.js/lib/languages/makefile'));
 hljs.registerLanguage('ocaml', require('highlight.js/lib/languages/ocaml'));
