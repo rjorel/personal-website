@@ -27,11 +27,6 @@ configure and add any services to the application in a not-so-bad way (not in `i
 ### Routing
 Routing is really basic, and routes are registered in `RouteServiceProvider` class.. not perfect, but sufficient.
 
-### Email sending
-Even it's possible to send emails via `mail()` PHP function, it's convenient to use some abstractions. At the end, the
-result is the same because I use `sendmail` tool to send emails.. but it requires a SMTP server on the deployment
-server.
-
 ### Twig extension
 I use Laravel mix to compile CSS and JS files. In production, result files are minified and versioned, but Twig does not
 natively include an extension to handle mix output. Twig mix extension is inspired by Laravel `Mix` 
