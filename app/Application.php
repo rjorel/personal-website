@@ -37,15 +37,20 @@ class Application implements ArrayAccess
         return new $class($this);
     }
 
-    public function getCachePath()
+    public function getAppPath()
     {
-        return $this->getPath('var');
+        return $this->getPath('app');
     }
 
     private function getPath($path = null)
     {
-        return $this->path .
-            ($path ? (DIRECTORY_SEPARATOR . $path) : '');
+        return $this->path
+            . ($path ? (DIRECTORY_SEPARATOR . $path) : '');
+    }
+
+    public function getCachePath()
+    {
+        return $this->getPath('var');
     }
 
     public function getPublicPath()

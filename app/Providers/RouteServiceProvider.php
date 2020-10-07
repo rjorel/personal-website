@@ -2,29 +2,23 @@
 
 namespace App\Providers;
 
-use App\Route;
-use App\Router;
+use App\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    private static $routes = [
-        ['/', 'GET', 'DefaultController', 'index'],
-        ['/skills', 'GET', 'DefaultController', 'skills'],
-        ['/achievements', 'GET', 'DefaultController', 'achievements'],
-        ['/about', 'GET', 'DefaultController', 'about'],
-        ['/repository-file', 'GET', 'RepositoryController', 'getFile'],
-        ['/repository(/.*)?', 'GET', 'RepositoryController', 'index'],
-        ['/sitemap\.xml', 'GET', 'SitemapController', 'index'],
-    ];
-
     public function register()
     {
-        $router = new Router;
-
-        foreach (self::$routes as $route) {
-            $router->addRoute(new Route(...$route));
-        }
+        $this->loadRoutes(
+            $router = new Router()
+        );
 
         $this->app['router'] = $router;
+    }
+
+    private function loadRoutes(Router $router)
+    {
+        (function () use ($router) {
+            require $this->app->getAppPath() . '/routes.php';
+        })();
     }
 }

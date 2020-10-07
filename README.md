@@ -25,7 +25,7 @@ It's a simple way to add services to the application. Registering a service prov
 configure and add any services to the application in a not-so-bad way (not in `index.php` for example).
 
 ### Routing
-Routing is really basic, and routes are registered in `RouteServiceProvider` class.. not perfect, but sufficient.
+Routing is really basic, and routes are registered via `RouteServiceProvider` class.. not perfect, but sufficient.
 
 ### Twig extension
 I use Laravel mix to compile CSS and JS files. In production, result files are minified and versioned, but Twig does not

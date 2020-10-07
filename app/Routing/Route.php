@@ -1,12 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Routing;
 
 class Route
 {
     private $uri;
     private $method;
-
     private $controller;
     private $action;
 

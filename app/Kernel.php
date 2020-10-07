@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Routing\Route;
+use App\Routing\Router;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,16 +52,9 @@ class Kernel
 
     private function instantiateController(Request $request, Route $route)
     {
-        $controller = $this->getControllerClass(
-            $route->getController()
-        );
+        $controller = $route->getController();
 
         return new $controller($this->app, $request);
-    }
-
-    private function getControllerClass(string $controller): string
-    {
-        return 'App\\Controllers\\' . $controller;
     }
 
     private function runAction($controller, Route $route)

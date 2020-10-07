@@ -1,12 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Routing;
 
 use RuntimeException;
 
 class Router
 {
     private $routes = [];
+
+    public function get($uri, $controller, $action)
+    {
+        $this->addRoute(
+            new Route($uri, 'GET', $controller, $action)
+        );
+    }
 
     public function addRoute(Route $route)
     {

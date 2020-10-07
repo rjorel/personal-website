@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Application;
-use App\Router;
+use App\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment;
 

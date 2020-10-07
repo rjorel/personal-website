@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Route;
+use App\Routing\Route;
 use Symfony\Component\Finder\Finder;
 
 class SitemapController extends Controller
