@@ -3,7 +3,7 @@
     "description": "Personal website",
     "type": "project",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.4",
         "ext-fileinfo": "*",
         "ext-json": "*",
         "symfony/finder": "^4.2",

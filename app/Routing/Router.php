@@ -73,8 +73,6 @@ class Router
 
     private function filterRoutesForMethod(array $routes, $method): array
     {
-        return array_filter($routes, function (Route $route) use ($method) {
-            return $route->getMethod() == $method;
-        });
+        return array_filter($routes, fn(Route $route) => $route->getMethod() == $method);
     }
 }

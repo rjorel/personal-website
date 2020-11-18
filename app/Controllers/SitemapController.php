@@ -24,20 +24,20 @@ class SitemapController extends Controller
 
     private function getRouterUris()
     {
-        return array_unique(
-            array_map(function (Route $route) {
-                return $route->getUri();
-            }, $this->getRouter()->getRoutes())
-        );
+        return array_unique(array_map(
+            fn(Route $route) => $route->getUri(),
+            $this->getRouter()->getRoutes()
+        ));
     }
 
     private function getRepositoryUris()
     {
         $basePath = $this->getBasePath();
 
-        return array_map(function ($directory) use ($basePath) {
-            return '/repository' . str_replace($basePath, '', $directory);
-        }, $this->getDirectories());
+        return array_map(
+            fn($directory) => '/repository' . str_replace($basePath, '', $directory),
+            $this->getDirectories()
+        );
     }
 
     private function getBasePath()

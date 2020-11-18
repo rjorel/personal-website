@@ -138,11 +138,10 @@ class File extends SplFileInfo
             return [];
         }
 
-        return array_map(function (SplFileInfo $file) {
-            return $this->newChildFile(
-                $file->getFilename()
-            );
-        }, $this->getChildFileInfo());
+        return array_map(
+            fn(SplFileInfo $file) => $this->newChildFile($file->getFilename()),
+            $this->getChildFileInfo()
+        );
     }
 
     private function getChildFileInfo()
