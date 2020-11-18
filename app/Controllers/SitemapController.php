@@ -10,16 +10,16 @@ class SitemapController extends Controller
 {
     public function index()
     {
-        $uris = array_merge(
-            $this->getRouterUris(), $this->getRepositoryUris()
-        );
-
         $content = $this->render('sitemap.xml.twig', [
-            'uris' => $uris,
-            'date' => date('Y-m-d')
+            'uris' => $this->getUris()
         ]);
 
         return $this->makeXmlResponse($content);
+    }
+
+    private function getUris()
+    {
+        return array_merge($this->getRouterUris(), $this->getRepositoryUris());
     }
 
     private function getRouterUris()
