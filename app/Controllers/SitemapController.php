@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Routing\Route;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\Response;
 
 class SitemapController extends Controller
 {
@@ -13,10 +14,12 @@ class SitemapController extends Controller
             $this->getRouterUris(), $this->getRepositoryUris()
         );
 
-        return $this->render('sitemap.xml.twig', [
+        $content = $this->render('sitemap.xml.twig', [
             'uris' => $uris,
             'date' => date('Y-m-d')
         ]);
+
+        return $this->makeXmlResponse($content);
     }
 
     private function getRouterUris()
@@ -51,5 +54,12 @@ class SitemapController extends Controller
         return array_keys(
             iterator_to_array($finder->getIterator())
         );
+    }
+
+    private function makeXmlResponse(string $content)
+    {
+        return new Response($content, 200, [
+            'Content-Type' => 'text/xml'
+        ]);
     }
 }

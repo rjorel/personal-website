@@ -71,8 +71,12 @@ class Kernel
         return $controller->$action(...$vars);
     }
 
-    private function prepareResponse($response)
+    private function prepareResponse($response): Response
     {
+        if ($response instanceof Response) {
+            return $response;
+        }
+
         if (is_array($response)) {
             return new JsonResponse($response);
         }
