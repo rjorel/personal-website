@@ -22,7 +22,7 @@
         "optimize-autoloader": true
     },
     "scripts": {
-        "serve": "php -S localhost:8000 -t www"
+        "serve": "php -S localhost:8000 -t www server.php"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

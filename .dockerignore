@@ -18,5 +18,6 @@
 deploy.sh
 docker-compose.yml
 README.md
+server.php
 
 *.tar
