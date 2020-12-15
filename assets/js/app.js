@@ -24,22 +24,22 @@ Vue.use(VueRouter);
 Vue.component('repository-component', RepositoryComponent);
 
 Vue.directive('highlightjs', {
-    deep: true,
-    bind: function (el, binding) {
-        const targets = el.querySelectorAll('code');
+  deep: true,
+  bind: function (el, binding) {
+    const targets = el.querySelectorAll('code');
 
-        targets.forEach((target) => {
-            if (binding.value) {
-                target.textContent = binding.value;
-            }
+    targets.forEach((target) => {
+      if (binding.value) {
+        target.textContent = binding.value;
+      }
 
-            hljs.highlightBlock(target);
-        });
-    }
+      hljs.highlightBlock(target);
+    });
+  }
 });
 
 new Vue({
-    el: '#app'
+  el: '#app'
 });
 
 hljs.registerLanguage('casio', require('highlight.js/lib/languages/basic'));
