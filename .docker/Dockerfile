@@ -1,4 +1,4 @@
-FROM node:12-alpine AS builder
+FROM node:14-alpine AS builder
 
 COPY ./package.json ./webpack.mix.js ./yarn.lock /app/
 COPY ./assets/ /app/assets/
