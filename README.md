@@ -38,8 +38,7 @@ current visited file is requested via the `p` parameter in AJAX request.
 
 ### Sitemap generation
 Making and updating a sitemap file is usually boring. Because repository may often change, it's more comfortable to
-generate the sitemap. Unfortunately, this feature does not work for local development because Composer `serve` script,
-as defined in `composer.json` file, cannot handle URLs with dots.
+generate the sitemap.
 
 ### No tests
 Yes, I know, that's really (really) bad... but for a website, should I do test something? Maybe not...
