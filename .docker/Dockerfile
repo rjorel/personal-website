@@ -32,7 +32,8 @@ RUN set -ex; \
 RUN set -ex; \
         ln -sf /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini; \
         sed -i 's/memory_limit.*/memory_limit = 256M/' /usr/local/etc/php/php.ini; \
-        sed -i "s/;opcache\.validate_timestamps.*/opcache\.validate_timestamps = 0/" /usr/local/etc/php/php.ini;
+        sed -i "s/;opcache\.validate_timestamps.*/opcache\.validate_timestamps = 0/" /usr/local/etc/php/php.ini; \
+        chmod 777 /srv/var;
 
 COPY .docker/entrypoint.sh .docker/wrapper.sh /
 RUN chmod +x /entrypoint.sh /wrapper.sh
