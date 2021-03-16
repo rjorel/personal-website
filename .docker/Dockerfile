@@ -15,7 +15,7 @@ FROM php:8.0-fpm-alpine
 COPY . /srv/
 WORKDIR /srv/
 
-COPY .docker/vhost.conf /etc/nginx/conf.d/default.conf
+COPY .docker/vhost.conf /etc/nginx/http.d/default.conf
 COPY --from=builder /app/www/ /srv/www/
 
 RUN set -ex; \
