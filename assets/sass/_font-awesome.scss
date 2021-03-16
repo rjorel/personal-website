@@ -1,0 +1,15 @@
+@import "~font-awesome/scss/variables";
+@import "~font-awesome/scss/path";
+@import "~font-awesome/scss/core";
+
+.fa-envelope:before {
+    content: $fa-var-envelope;
+}
+
+.fa-github:before {
+    content: $fa-var-github;
+}
+
+.fa-linkedin:before {
+    content: $fa-var-linkedin;
+}
