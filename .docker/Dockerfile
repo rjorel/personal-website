@@ -7,7 +7,7 @@ WORKDIR /app/
 
 RUN set -ex; \
         yarn install --silent; \
-        yarn run production --silent
+        yarn run production
 
 
 FROM php:8.0-fpm-alpine

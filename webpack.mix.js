@@ -12,13 +12,14 @@ const mix = require('laravel-mix');
  */
 
 mix
-    .setPublicPath('www')
-    .sass('assets/sass/app.scss', 'www/css')
-    .js('assets/js/app.js', 'www/js')
-    .copyDirectory('assets/img', 'www/images');
+  .setPublicPath('www')
+  .sass('assets/sass/app.scss', 'www/css')
+  .js('assets/js/app.js', 'www/js')
+  .copyDirectory('assets/img', 'www/images')
+  .vue();
 
 if (mix.inProduction()) {
-    mix.version();
+  mix.version();
 } else {
-    mix.sourceMaps();
+  mix.sourceMaps();
 }
