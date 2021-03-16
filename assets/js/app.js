@@ -48,5 +48,6 @@ hljs.registerLanguage('c-like', require('highlight.js/lib/languages/c-like'));
 hljs.registerLanguage('lisp', require('highlight.js/lib/languages/lisp'));
 hljs.registerLanguage('makefile', require('highlight.js/lib/languages/makefile'));
 hljs.registerLanguage('ocaml', require('highlight.js/lib/languages/ocaml'));
+hljs.registerLanguage('php', require('highlight.js/lib/languages/php'));
 hljs.registerLanguage('prolog', require('highlight.js/lib/languages/prolog'));
 hljs.registerLanguage('python', require('highlight.js/lib/languages/python'));
