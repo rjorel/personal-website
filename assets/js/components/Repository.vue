@@ -11,7 +11,7 @@
 
     <div class="row" v-if="currentFile.isDir">
       <ul>
-        <li v-for="(file, path) of currentFile.files" :key="path" class="list-none mb-1">
+        <li v-for="(file, path) of currentFile.subFiles" :key="path" class="list-none mb-1">
           <img :src="'/images/repository/' + getIconName(file) + '.png'" :alt="getIconName(file)" />
 
           <a :href="file.storagePath" data-lightbox="lightbox" v-if="file.isImage">
@@ -42,8 +42,8 @@
               v-else-if="currentFile.isPdf">
       </iframe>
 
-      <pre v-highlightjs v-else>
-        <code :class="currentFile.extension">{{ currentFile.content }}</code>
+      <pre v-else>
+        <code class="hljs" v-html="currentFile.content" />
       </pre>
     </div>
 
@@ -62,6 +62,7 @@
   });
 
   export default {
+    name: 'Repository',
     router,
 
     props: {

@@ -11,7 +11,6 @@ class File extends SplFileInfo
     const HTML_DESCRIPTION_FILE = '.README.html';
 
     private $relativePath;
-    private $storageDirectory;
 
     public function __construct($filePath, $relativePath, $checkPath = true)
     {
@@ -29,34 +28,20 @@ class File extends SplFileInfo
         return str_replace('//', '/', $path);
     }
 
-    public function toArray()
-    {
-        return [
-            'name'        => $this->getFilename(),
-            'extension'   => $this->getExtension(),
-            'description' => $this->getHtmlDescription(),
-            'content'     => $this->getContent(),
-
-            'relativePath'       => $this->getRelativePath(),
-            'relativeParentPath' => $this->getRelativeParentPath(),
-            'storagePath'        => $this->getStoragePath(),
-
-            'isDir'     => $this->isDir(),
-            'isArchive' => $this->isArchive(),
-            'isImage'   => $this->isImage(),
-            'isPdf'     => $this->isPdf()
-        ];
-    }
-
     public function getHtmlDescription()
     {
         try {
-            $file = $this->newChildFile(self::HTML_DESCRIPTION_FILE);
+            return $this->newChildFile(self::HTML_DESCRIPTION_FILE)->read();
         } catch (FileException $e) {
             return '';
         }
+    }
 
-        return $this->minifyHtml($file->read());
+    private function read()
+    {
+        $fd = $this->openFile('r');
+
+        return $fd->fread($fd->getSize());
     }
 
     private function newChildFile($filename)
@@ -72,22 +57,10 @@ class File extends SplFileInfo
         return $this->relativePath;
     }
 
-    private function minifyHtml($html)
-    {
-        return preg_replace(['/[\s\n]+/'], [' '], $html);
-    }
-
-    private function read()
-    {
-        $fd = $this->openFile('r');
-
-        return $fd->fread($fd->getSize());
-    }
-
-    public function getContent()
+    public function getContent(): ?string
     {
         if ($this->isDir() || $this->isArchive() || $this->isPdf() || $this->isImage()) {
-            return '';
+            return null;
         }
 
         return $this->read();
@@ -95,9 +68,7 @@ class File extends SplFileInfo
 
     public function isArchive()
     {
-        return in_array(
-            $this->getExtension(), ['zip', 'rar']
-        );
+        return in_array($this->getExtension(), ['zip', 'rar']);
     }
 
     public function isPdf()
@@ -118,18 +89,6 @@ class File extends SplFileInfo
     public function getRelativeParentPath()
     {
         return pathinfo($this->relativePath, PATHINFO_DIRNAME);
-    }
-
-    public function getStoragePath()
-    {
-        return $this->storageDirectory . $this->getRelativePath();
-    }
-
-    public function setStorageDirectory($directory)
-    {
-        $this->storageDirectory = $directory;
-
-        return $this;
     }
 
     public function getChildFiles()
