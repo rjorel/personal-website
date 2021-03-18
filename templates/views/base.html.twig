@@ -25,14 +25,12 @@
         <a class="navbar-brand" href="/" style="font-size: 28px;">
             R.Jor-El
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#mainNavbar" aria-controls="mainNavbar"
-                aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav me-auto">
 
                 {% set route = app.request.attributes.get('_route') %}
 
@@ -53,7 +51,7 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="mailto:raphael.jorel@laposte.net">
                         <i class="fa fa-envelope"></i>

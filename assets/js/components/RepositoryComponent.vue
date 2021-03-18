@@ -1,10 +1,10 @@
 <template>
-  <div class="container" v-if="currentFile">
+  <div class="px-3 py-2" v-if="currentFile">
     <div class="mb-4">
       <a class="mr-2" @click="setRouterPath(currentFile.relativeParentPath)">
         <img src="/images/repository/colt.png" class="rotate-hover-10" />
       </a>
-      <span class="p-2 font-size-20 jumbotron">
+      <span class="p-2 border border-2 bg-light rounded" style="font-size: 20px;">
         {{ currentFile.relativePath }}
       </span>
     </div>
