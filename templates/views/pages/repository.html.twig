@@ -19,6 +19,196 @@
     </p>
 
     <div class="bg-white p-3 border border-brown">
-        <repository-component path="{{ path }}"></repository-component>
+        <div class="px-3 py-2">
+            <div class="mb-4">
+                <button class="btn btn-link shadow-none mr-2"
+                        id="js_goBackButton">
+                    <img src="/images/repository/colt.png" class="rotate-hover-10" />
+                </button>
+
+                <span class="p-2 border border-2 bg-light rounded" style="font-size: 20px;"
+                      id="js_currentFilePathText">
+                </span>
+            </div>
+
+            <ul class="d-none" id="js_childFileList"></ul>
+
+            <div class="d-none" id="js_fileContentBlock"></div>
+
+            <div class="d-none" id="js_fileDescriptionBlock">
+                <hr />
+                <div class="m-3" id="js_fileDescriptionText"></div>
+            </div>
+        </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        (function () {
+            const REPOSITORY_URL = '/repository';
+            const REPOSITORY_FILE_URL = '/repository-file?p=';
+
+            function getFilePathFromUrl() {
+                // Retrieve file path after page anchor.
+                return window.location.hash.slice(1);
+            }
+
+            function goToUrl(url) {
+                window.location.href = url;
+            }
+
+            function onHistoryChange(callback) {
+                window.onpopstate = callback;
+            }
+
+            function pushUrlInHistory(url) {
+                window.history.pushState({}, null, url);
+            }
+
+            function Repository() {
+                this._currentFile = null;
+
+                // Python-style constructor! :-D
+                this.__init__ = function () {
+                    this._retrieveGuiElements();
+
+                    this._handleClickOnGoBackButton();
+
+                    this.loadFilePathFromUrl();
+                };
+
+                this._retrieveGuiElements = function () {
+                    this._goBackButton = document.querySelector('#js_goBackButton');
+                    this._currentFilePathText = document.querySelector('#js_currentFilePathText');
+                    this._childFileList = document.querySelector('#js_childFileList');
+                    this._fileContentBlock = document.querySelector('#js_fileContentBlock');
+                    this._fileDescriptionBlock = document.querySelector('#js_fileDescriptionBlock');
+                    this._fileDescriptionText = document.querySelector('#js_fileDescriptionText');
+                };
+
+                this._handleClickOnGoBackButton = function () {
+                    this._goBackButton.addEventListener('click', function () {
+                        this._goToFilePath(this._currentFile.relativeParentPath);
+                    }.bind(this));
+                };
+
+                this.loadFilePathFromUrl = function () {
+                    this._loadFilePath(getFilePathFromUrl());
+                };
+
+                this._loadFilePath = function (path) {
+                    fetch(REPOSITORY_FILE_URL + path)
+                        .then(function (response) {
+                            return response.json(); // Assume that call never fails.
+                        })
+                        .then(function (data) {
+                            this._currentFile = data.file;
+
+                            this._updateGui(data.file);
+                        }.bind(this));
+                };
+
+                this._updateGui = function (file) {
+                    this._prepareUpdate();
+
+                    this._showFilePath(file);
+
+                    if (file.isDir) {
+                        this._showChildFileList(file);
+                    } else {
+                        this._showFileContent(file);
+                    }
+
+                    if (file.description) {
+                        this._showFileDescription(file);
+                    }
+                };
+
+                this._prepareUpdate = function () {
+                    this._childFileList.classList.add('d-none');
+                    this._fileContentBlock.classList.add('d-none');
+                    this._fileDescriptionBlock.classList.add('d-none');
+                };
+
+                this._showFilePath = function (file) {
+                    this._currentFilePathText.innerHTML = file.relativePath;
+                };
+
+                this._showChildFileList = function (file) {
+                    this._childFileList.innerHTML = null;
+
+                    this._addChildFileListItems(file);
+
+                    this._childFileList.classList.remove('d-none');
+                };
+
+                this._addChildFileListItems = function (parentFile) {
+                    parentFile.childFiles.forEach(function (childFile) {
+                        const item = document.createElement('li');
+
+                        this._setFileListItemText(item, childFile);
+                        this._handleClickOnListItem(item, childFile);
+
+                        this._childFileList.append(item);
+                    }.bind(this));
+                };
+
+                this._setFileListItemText = function (item, file) {
+                    item.innerHTML =
+                        '<img src="' + '/images/repository/'
+                        + this._getIconName(file) + '.png' + '" class="me-1" />'
+                        + file.name;
+
+                    item.classList.add('text-primary', 'list-none', 'mb-1');
+                    item.setAttribute('role', 'button');
+                };
+
+                this._getIconName = function (file) {
+                    return file.isDir ? 'barrel' : (file.isArchive ? 'dynamite' : 'beer');
+                };
+
+                this._handleClickOnListItem = function (item, file) {
+                    item.addEventListener('click', function () {
+                        if (file.isArchive || file.isImage || file.isPdf) {
+                            goToUrl(file.storagePath);
+                            return;
+                        }
+
+                        this._goToFilePath(file.relativePath);
+                    }.bind(this));
+                };
+
+                this._showFileContent = function (file) {
+                    this._fileContentBlock.innerHTML =
+                        '<a href="' + file.storagePath + '" download="'
+                        + file.name + '" class="btn btn-brown font-duality mb-3">'
+                        + '<i class="fa fa-download"></i> Télécharger'
+                        + '</a>'
+                        + '<pre><code class="hljs">' + file.content + '</code></pre>';
+
+                    this._fileContentBlock.classList.remove('d-none');
+                };
+
+                this._showFileDescription = function (file) {
+                    this._fileDescriptionText.innerHTML = file.description.replace(/<currentDir>/g, file.storagePath);
+                    this._fileDescriptionBlock.classList.remove('d-none');
+                };
+
+                this._goToFilePath = function (path) {
+                    this._loadFilePath(path);
+
+                    pushUrlInHistory(REPOSITORY_URL + '#' + path);
+                };
+
+                this.__init__();
+            }
+
+            const repository = new Repository();
+
+            onHistoryChange(function () {
+                repository.loadFilePathFromUrl();
+            });
+        })();
+    </script>
 {% endblock %}

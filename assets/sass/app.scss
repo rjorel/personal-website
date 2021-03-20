@@ -53,3 +53,11 @@ main {
 .border-brown {
     border-color: $brown-color !important;
 }
+
+.list-none {
+    list-style: none;
+}
+
+.rotate-hover-10:hover {
+    transform: rotate(-10deg);
+}

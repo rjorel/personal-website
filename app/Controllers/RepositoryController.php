@@ -11,11 +11,9 @@ class RepositoryController extends Controller
 {
     const REPOSITORY_STORAGE_DIRECTORY = '/repository-files';
 
-    public function index($path = null)
+    public function index()
     {
-        return $this->render('views/pages/repository.html.twig', [
-            'path' => $path
-        ]);
+        return $this->render('views/pages/repository.html.twig');
     }
 
     public function getFile()
@@ -25,13 +23,15 @@ class RepositoryController extends Controller
         $file = $this->getFileFromPath($path);
 
         return [
-            'currentFile' => array_merge($this->getFileAttributes($file), [
+            'file' => array_merge($this->getFileAttributes($file), [
                 'description' => $this->getHtmlFileDescription($file),
                 'content'     => $this->getHighlightedFileContent($file),
 
-                'subFiles' => array_map(fn(File $file) => $this->getFileAttributes($file), $file->getChildFiles())
+                'childFiles' => array_values(array_map(
+                    fn(File $file) => $this->getFileAttributes($file),
+                    $file->getChildFiles()
+                ))
             ])
-
         ];
     }
 
