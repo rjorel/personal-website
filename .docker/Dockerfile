@@ -2,6 +2,7 @@ FROM node:14-alpine AS builder
 
 COPY ./package.json ./webpack.mix.js ./yarn.lock /app/
 COPY ./assets/ /app/assets/
+COPY ./templates/ /app/templates/
 
 WORKDIR /app/
 

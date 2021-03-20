@@ -1,4 +1,7 @@
+const path = require('path');
 const mix = require('laravel-mix');
+
+require('laravel-mix-purgecss');
 
 /*
  |--------------------------------------------------------------------------
@@ -15,7 +18,14 @@ mix
   .setPublicPath('www')
   .sass('assets/sass/app.scss', 'www/css/app.css')
   .js('assets/js/app.js', 'www/js/app.js')
-  .copyDirectory('assets/img', 'www/images');
+  .copyDirectory('assets/img', 'www/images')
+  .purgeCss({
+    content: [path.join(__dirname, 'templates/**/*.html.twig')],
+    safelist: [
+      'collapsing',                                     // Menu.
+      'img-fluid', /^float-(start|end)$/, /^m[bse]-3$/  // Repository files.
+    ]
+  });
 
 if (mix.inProduction()) {
   mix.version();
