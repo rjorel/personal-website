@@ -35,7 +35,7 @@ class SitemapController extends Controller
         $basePath = $this->getBasePath();
 
         return array_map(
-            fn($directory) => '/repository' . str_replace($basePath, '', $directory),
+            fn($directory) => '/repository#' . str_replace($basePath, '', $directory),
             $this->getDirectories()
         );
     }
