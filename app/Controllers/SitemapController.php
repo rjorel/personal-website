@@ -11,15 +11,18 @@ class SitemapController extends Controller
     public function index()
     {
         $content = $this->render('sitemap.xml.twig', [
-            'uris' => $this->getUris()
+            'urls' => $this->getUrls()
         ]);
 
         return $this->makeXmlResponse($content);
     }
 
-    private function getUris()
+    private function getUrls()
     {
-        return array_merge($this->getRouterUris(), $this->getRepositoryUris());
+        $baseUrl = $this->request->getSchemeAndHttpHost();
+        $uris = array_merge($this->getRouterUris(), $this->getRepositoryUris());
+
+        return array_map(fn(string $uri) => $baseUrl . $uri, $uris);
     }
 
     private function getRouterUris()
