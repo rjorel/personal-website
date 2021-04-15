@@ -67,141 +67,137 @@
             }
 
             function Repository() {
-                this._currentFile = null;
+                const self = this;
 
-                // Python-style constructor! :-D
-                this.__init__ = function () {
-                    this._retrieveGuiElements();
+                const goBackButton = document.querySelector('#js_goBackButton');
+                const currentFilePathText = document.querySelector('#js_currentFilePathText');
+                const childFileList = document.querySelector('#js_childFileList');
+                const fileContentBlock = document.querySelector('#js_fileContentBlock');
+                const fileDescriptionBlock = document.querySelector('#js_fileDescriptionBlock');
+                const fileDescriptionText = document.querySelector('#js_fileDescriptionText');
 
-                    this._handleClickOnGoBackButton();
+                let currentFile = null;
 
-                    this.loadFilePathFromUrl();
-                };
+                function constructor() {
+                    handleClickOnGoBackButton();
 
-                this._retrieveGuiElements = function () {
-                    this._goBackButton = document.querySelector('#js_goBackButton');
-                    this._currentFilePathText = document.querySelector('#js_currentFilePathText');
-                    this._childFileList = document.querySelector('#js_childFileList');
-                    this._fileContentBlock = document.querySelector('#js_fileContentBlock');
-                    this._fileDescriptionBlock = document.querySelector('#js_fileDescriptionBlock');
-                    this._fileDescriptionText = document.querySelector('#js_fileDescriptionText');
-                };
+                    self.loadFilePathFromUrl();
+                }
 
-                this._handleClickOnGoBackButton = function () {
-                    this._goBackButton.addEventListener('click', function () {
-                        this._goToFilePath(this._currentFile.relativeParentPath);
-                    }.bind(this));
-                };
+                function handleClickOnGoBackButton() {
+                    goBackButton.addEventListener('click', function () {
+                        goToFilePath(currentFile.relativeParentPath);
+                    });
+                }
 
+                // This function is called from outside below.
                 this.loadFilePathFromUrl = function () {
-                    this._loadFilePath(getFilePathFromUrl());
+                    loadFilePath(getFilePathFromUrl());
                 };
 
-                this._loadFilePath = function (path) {
+                function loadFilePath(path) {
                     fetch(REPOSITORY_FILE_URL + path)
                         .then(function (response) {
                             return response.json(); // Assume that call never fails.
                         })
                         .then(function (data) {
-                            this._currentFile = data.file;
+                            currentFile = data.file;
+                            updateGui(data.file);
+                        });
+                }
 
-                            this._updateGui(data.file);
-                        }.bind(this));
-                };
-
-                this._updateGui = function (file) {
-                    this._prepareUpdate();
-
-                    this._showFilePath(file);
+                function updateGui(file) {
+                    prepareUpdate();
+                    showFilePath(file);
 
                     if (file.isDir) {
-                        this._showChildFileList(file);
+                        showChildFileList(file);
                     } else {
-                        this._showFileContent(file);
+                        showFileContent(file);
                     }
 
                     if (file.description) {
-                        this._showFileDescription(file);
+                        showFileDescription(file);
                     }
-                };
+                }
 
-                this._prepareUpdate = function () {
-                    this._childFileList.classList.add('d-none');
-                    this._fileContentBlock.classList.add('d-none');
-                    this._fileDescriptionBlock.classList.add('d-none');
-                };
+                function prepareUpdate() {
+                    childFileList.classList.add('d-none');
+                    fileContentBlock.classList.add('d-none');
+                    fileDescriptionBlock.classList.add('d-none');
+                }
 
-                this._showFilePath = function (file) {
-                    this._currentFilePathText.innerHTML = file.relativePath;
-                };
+                function showFilePath(file) {
+                    currentFilePathText.innerHTML = file.relativePath;
+                }
 
-                this._showChildFileList = function (file) {
-                    this._childFileList.innerHTML = null;
+                function showChildFileList(file) {
+                    childFileList.innerHTML = null;
 
-                    this._addChildFileListItems(file);
+                    addChildFileListItems(file);
 
-                    this._childFileList.classList.remove('d-none');
-                };
+                    childFileList.classList.remove('d-none');
+                }
 
-                this._addChildFileListItems = function (parentFile) {
+                function addChildFileListItems(parentFile) {
                     parentFile.childFiles.forEach(function (childFile) {
                         const item = document.createElement('li');
 
-                        this._setFileListItemText(item, childFile);
-                        this._handleClickOnListItem(item, childFile);
+                        setFileListItemText(item, childFile);
+                        handleClickOnListItem(item, childFile);
 
-                        this._childFileList.append(item);
-                    }.bind(this));
-                };
+                        childFileList.append(item);
+                    });
+                }
 
-                this._setFileListItemText = function (item, file) {
+                function setFileListItemText(item, file) {
                     item.innerHTML =
                         '<img src="' + '/images/repository/'
-                        + this._getIconName(file) + '.png' + '" class="me-1" />'
+                        + getIconName(file) + '.png' + '" class="me-1" />'
                         + file.name;
 
                     item.classList.add('text-primary', 'list-none', 'mb-1');
                     item.setAttribute('role', 'button');
-                };
+                }
 
-                this._getIconName = function (file) {
+                function getIconName(file) {
                     return file.isDir ? 'barrel' : (file.isArchive ? 'dynamite' : 'beer');
-                };
+                }
 
-                this._handleClickOnListItem = function (item, file) {
+                function handleClickOnListItem(item, file) {
                     item.addEventListener('click', function () {
                         if (file.isArchive || file.isImage || file.isPdf) {
                             goToUrl(file.storagePath);
                             return;
                         }
 
-                        this._goToFilePath(file.relativePath);
-                    }.bind(this));
-                };
+                        goToFilePath(file.relativePath);
+                    });
+                }
 
-                this._showFileContent = function (file) {
-                    this._fileContentBlock.innerHTML =
+                function showFileContent(file) {
+                    fileContentBlock.innerHTML =
                         '<a href="' + file.storagePath + '" download="'
                         + file.name + '" class="btn btn-brown font-duality mb-3">'
                         + '<i class="fa fa-download"></i> Télécharger'
                         + '</a>'
                         + '<pre><code class="hljs">' + file.content + '</code></pre>';
 
-                    this._fileContentBlock.classList.remove('d-none');
-                };
+                    fileContentBlock.classList.remove('d-none');
+                }
 
-                this._showFileDescription = function (file) {
-                    this._fileDescriptionText.innerHTML = file.description.replace(/<currentDir>/g, file.storagePath);
-                    this._fileDescriptionBlock.classList.remove('d-none');
-                };
+                function showFileDescription(file) {
+                    fileDescriptionText.innerHTML = file.description.replace(/<currentDir>/g, file.storagePath);
+                    fileDescriptionBlock.classList.remove('d-none');
+                }
 
-                this._goToFilePath = function (path) {
-                    this._loadFilePath(path);
+                function goToFilePath(path) {
+                    loadFilePath(path);
 
                     pushUrlInHistory(REPOSITORY_URL + '#' + path);
-                };
+                }
 
-                this.__init__();
+                constructor();
             }
 
             const repository = new Repository();
