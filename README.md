@@ -33,7 +33,7 @@ natively include an extension to handle mix output. Twig mix extension is inspir
 [class](https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Mix.php).
 
 ### Repository
-Repository uses Vue to be interactive and avoid page reloading for each visited file or directory. Information about the
+Repository uses JS to be interactive and avoid page reloading for each visited file or directory. Information about the
 current visited file is requested via the `p` parameter in AJAX request.
 
 ### Sitemap generation
