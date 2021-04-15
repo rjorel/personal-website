@@ -22,8 +22,8 @@ mix
   .purgeCss({
     content: [path.join(__dirname, 'templates/**/*.html.twig')],
     safelist: [
-      'collapsing',                                     // Menu.
-      'img-fluid', /^float-(start|end)$/, /^m[bse]-3$/  // Repository files.
+      'collapsing',         // Menu.
+      /^img-(start|end)$/   // Repository images.
     ]
   });
 

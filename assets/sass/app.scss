@@ -61,3 +61,18 @@ main {
 .rotate-hover-10:hover {
     transform: rotate(-10deg);
 }
+
+// For repository files.
+.img-start {
+    @extend .img-fluid;
+    @extend .float-start;
+    @extend .mb-3;
+    @extend .me-3
+}
+
+.img-end {
+    @extend .img-fluid;
+    @extend .float-end;
+    @extend .mb-3;
+    @extend .ms-3;
+}
