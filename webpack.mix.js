@@ -23,7 +23,8 @@ mix
     content: [path.join(__dirname, 'templates/**/*.html.twig')],
     safelist: [
       'collapsing',         // Menu.
-      /^img-(start|end)$/   // Repository images.
+      /^img-(start|end)$/,  // Repository images.
+      /^hljs.*$/            // Syntax highlighting.
     ]
   });
 
