@@ -6,9 +6,9 @@
         "php": "^7.4|^8.0",
         "ext-fileinfo": "*",
         "ext-json": "*",
-        "scrivo/highlight.php": "v9.18.1.6",
-        "symfony/finder": "^4.2",
-        "symfony/http-foundation": "^4.2",
+        "scrivo/highlight.php": "^9.0",
+        "symfony/finder": "^5.0",
+        "symfony/http-foundation": "^5.0",
         "twig/twig": "^2.8",
         "vlucas/phpdotenv": "^3.3"
     },
