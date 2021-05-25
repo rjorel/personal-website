@@ -4,18 +4,12 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use App\Application;
 use App\Kernel;
-use Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
-
-/**
- * Load environment variables.
- */
-(Dotenv::create(__DIR__ . '/..'))->safeLoad();
 
 /**
  * Set debug for development purposes.
  */
-if (getenv('APP_ENV') == 'local') {
+if (getenv('APP_DEBUG')) {
     ini_set('display_errors', true);
 }
 

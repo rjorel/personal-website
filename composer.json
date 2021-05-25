@@ -9,8 +9,7 @@
         "scrivo/highlight.php": "^9.0",
         "symfony/finder": "^5.0",
         "symfony/http-foundation": "^5.0",
-        "twig/twig": "^2.8",
-        "vlucas/phpdotenv": "^3.3"
+        "twig/twig": "^2.8"
     },
     "autoload": {
         "psr-4": {
@@ -23,7 +22,7 @@
         "optimize-autoloader": true
     },
     "scripts": {
-        "serve": "php -S localhost:8000 -t www server.php"
+        "serve": "APP_DEBUG=true php -S localhost:8000 -t www server.php"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
