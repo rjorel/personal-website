@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Twig;
+namespace App;
 
 use Exception;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class MixExtension extends AbstractExtension
+// Inspired by https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Mix.php
+class TwigMixExtension extends AbstractExtension
 {
     private array $manifests = [];
 
@@ -19,7 +20,7 @@ class MixExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('mix', [$this, 'getVersionedFilePath']),
+            new TwigFunction('mix', [$this, 'getVersionedFilePath'])
         ];
     }
 

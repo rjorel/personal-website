@@ -1,10 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Core;
 
-use App\Controllers\Controller;
-use App\Routing\Route;
-use App\Routing\Router;
+use App\Core\Routing\Route;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 class Kernel
 {
     public function __construct(
-        private Application $app
+        private Application $app,
+        private ExceptionHandler $exceptionHandler
     ) {
         //
     }
@@ -29,8 +28,8 @@ class Kernel
     {
         try {
             $route = $this->findRoute($request);
-        } catch (RuntimeException) {
-            return $this->app['twig']->render('views/errors/404.html.twig');
+        } catch (RuntimeException $exception) {
+            return $this->exceptionHandler->render($request, $exception);
         }
 
         $controller = $this->instantiateController($request, $route);
@@ -40,17 +39,13 @@ class Kernel
 
     private function findRoute(Request $request)
     {
-        return $this->getRouter()->find(
-            $request->getPathInfo(), $request->getMethod()
+        return $this->app->getRouter()->find(
+            $request->getPathInfo(),
+            $request->getMethod()
         );
     }
 
-    private function getRouter(): Router
-    {
-        return $this->app['router'];
-    }
-
-    private function instantiateController(Request $request, Route $route)
+    private function instantiateController(Request $request, Route $route): Controller
     {
         $controller = $route->getController();
 

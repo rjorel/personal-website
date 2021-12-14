@@ -2,28 +2,33 @@
 
 namespace App\Providers;
 
-use App\Twig\MixExtension;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+use App\Core\ServiceProvider;
+use App\TwigMixExtension;
+use Twig\Environment as TwigEnvironment;
+use Twig\Loader\FilesystemLoader as TwigFilesystemLoader;
 
 class TwigServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $loader = new FilesystemLoader($this->app->getTemplatePath());
-        $twig = new Environment($loader, $this->getEnvironmentOptions());
-
-        $twig->addExtension(
-            new MixExtension($this->app->getPublicPath())
+        $twig = new TwigEnvironment(
+            new TwigFilesystemLoader($this->app->getTemplatePath()),
+            $this->getTwigEnvironmentOptions()
         );
 
-        $this->app['twig'] = $twig;
+        $twig->addExtension(
+            new TwigMixExtension($this->app->getPublicPath())
+        );
+
+        $this->app[ TwigEnvironment::class ] = $twig;
     }
 
-    private function getEnvironmentOptions()
+    private function getTwigEnvironmentOptions()
     {
         if ($this->isProductionEnvironment()) {
-            return ['cache' => $this->app->getCachePath()];
+            return [
+                'cache' => $this->app->getCachePath()
+            ];
         }
 
         return [
@@ -34,6 +39,6 @@ class TwigServiceProvider extends ServiceProvider
 
     private function isProductionEnvironment()
     {
-        return getenv('APP_ENV') == 'production';
+        return $this->app->getEnvironment() == 'production';
     }
 }

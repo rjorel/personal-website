@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Routing;
+namespace App\Core\Routing;
 
 use RuntimeException;
 
@@ -27,13 +27,9 @@ class Router
 
     public function find(string $uri, string $method): Route
     {
-        $routes = $this->filterRoutesForUri(
-            $this->routes, $uri
-        );
+        $routes = $this->filterRoutesForUri($this->routes, $uri);
 
-        $finalRoutes = $this->filterRoutesForMethod(
-            $routes, $method
-        );
+        $finalRoutes = $this->filterRoutesForMethod($routes, $method);
 
         if (empty($finalRoutes)) {
             throw new RuntimeException(
@@ -48,9 +44,7 @@ class Router
     private function filterRoutesForUri(array $routes, string $uri): array
     {
         return array_filter($routes, function (Route $route) use ($uri) {
-            $regex = $this->formatForRegex(
-                $route->getUri()
-            );
+            $regex = $this->formatForRegex($route->getUri());
 
             if (preg_match($regex, $uri, $matches)) {
                 $route->setVariables(array_slice($matches, 1));

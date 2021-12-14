@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Providers;
-
-use App\Application;
+namespace App\Core;
 
 abstract class ServiceProvider
 {

@@ -3,7 +3,8 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Application;
-use App\Kernel;
+use App\Core\Kernel;
+use App\ExceptionHandler;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -23,8 +24,6 @@ $app = new Application(
 /**
  * Handle incoming request.
  */
-$request = Request::createFromGlobals();
-
-$response = (new Kernel($app))->handle($request);
-
-$response->send();
+(new Kernel($app, new ExceptionHandler($app)))
+    ->handle(Request::createFromGlobals())
+    ->send();

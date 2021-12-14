@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Routing\Route;
+use App\Core\Routing\Route;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -29,7 +29,7 @@ class SitemapController extends Controller
     {
         return array_unique(array_map(
             fn(Route $route) => $route->getUri(),
-            $this->getRouter()->getRoutes()
+            $this->app->getRouter()->getRoutes()
         ));
     }
 

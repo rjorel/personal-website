@@ -2,32 +2,13 @@
 
 namespace App\Controllers;
 
-use App\Application;
-use App\Routing\Router;
-use Symfony\Component\HttpFoundation\Request;
-use Twig\Environment;
+use App\Core\Controller as BaseController;
+use Twig\Environment as TwigEnvironment;
 
-class Controller
+abstract class Controller extends BaseController
 {
-    public function __construct(
-        protected Application $app,
-        protected Request $request
-    ) {
-        //
-    }
-
     protected function render(string $view, array $vars = [])
     {
-        return $this->getTwigEnvironment()->render($view, $vars);
-    }
-
-    protected function getTwigEnvironment(): Environment
-    {
-        return $this->app['twig'];
-    }
-
-    protected function getRouter(): Router
-    {
-        return $this->app['router'];
+        return $this->app[ TwigEnvironment::class ]->render($view, $vars);
     }
 }
