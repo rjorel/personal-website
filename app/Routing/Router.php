@@ -6,7 +6,7 @@ use RuntimeException;
 
 class Router
 {
-    private $routes = [];
+    private array $routes = [];
 
     public function get($uri, $controller, $action)
     {

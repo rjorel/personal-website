@@ -9,7 +9,7 @@ use ArrayAccess;
 
 class Application implements ArrayAccess
 {
-    private static $providers = [
+    private static array $providers = [
         RouteServiceProvider::class,
         TwigServiceProvider::class
     ];

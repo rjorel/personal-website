@@ -70,7 +70,7 @@ class Kernel
         return $controller->$action(...$vars);
     }
 
-    private function prepareResponse($response): Response
+    private function prepareResponse(Response|array|string $response): Response
     {
         if ($response instanceof Response) {
             return $response;

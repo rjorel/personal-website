@@ -10,7 +10,7 @@ class File extends SplFileInfo
 {
     const HTML_DESCRIPTION_FILE = '.README.html';
 
-    private $relativePath;
+    private string $relativePath;
 
     public function __construct($filePath, $relativePath, $checkPath = true)
     {
