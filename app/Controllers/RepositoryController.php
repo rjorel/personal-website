@@ -36,7 +36,7 @@ class RepositoryController extends Controller
         ];
     }
 
-    private function removeMultiPoints($path)
+    private function removeMultiPoints(string $path)
     {
         return preg_replace('/\.+/', '.', $path);
     }

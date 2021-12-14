@@ -8,7 +8,7 @@ class Router
 {
     private array $routes = [];
 
-    public function get($uri, $controller, $action)
+    public function get(string $uri, string $controller, string $action)
     {
         $this->addRoute(
             new Route($uri, 'GET', $controller, $action)
@@ -25,7 +25,7 @@ class Router
         return $this->routes;
     }
 
-    public function find($uri, $method): Route
+    public function find(string $uri, string $method): Route
     {
         $routes = $this->filterRoutesForUri(
             $this->routes, $uri
@@ -45,7 +45,7 @@ class Router
         return array_shift($finalRoutes);
     }
 
-    private function filterRoutesForUri(array $routes, $uri): array
+    private function filterRoutesForUri(array $routes, string $uri): array
     {
         return array_filter($routes, function (Route $route) use ($uri) {
             $regex = $this->formatForRegex(
@@ -61,17 +61,17 @@ class Router
         });
     }
 
-    private function formatForRegex($uri)
+    private function formatForRegex(string $uri)
     {
         return '/^' . $this->escapeSlashes($uri) . '$/';
     }
 
-    private function escapeSlashes($uri)
+    private function escapeSlashes(string $uri)
     {
         return str_replace('/', '\/', $uri);
     }
 
-    private function filterRoutesForMethod(array $routes, $method): array
+    private function filterRoutesForMethod(array $routes, string $method): array
     {
         return array_filter($routes, fn(Route $route) => $route->getMethod() == $method);
     }

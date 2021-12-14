@@ -12,7 +12,7 @@ class File extends SplFileInfo
 
     private string $relativePath;
 
-    public function __construct($filePath, $relativePath, $checkPath = true)
+    public function __construct(string $filePath, string $relativePath, bool $checkPath = true)
     {
         parent::__construct($filePath);
 
@@ -23,7 +23,7 @@ class File extends SplFileInfo
         $this->relativePath = $this->removeDuplicatedSlashes($relativePath);
     }
 
-    private function removeDuplicatedSlashes($path)
+    private function removeDuplicatedSlashes(string $path)
     {
         return str_replace('//', '/', $path);
     }
@@ -44,7 +44,7 @@ class File extends SplFileInfo
         return $fd->fread($fd->getSize());
     }
 
-    private function newChildFile($filename)
+    private function newChildFile(string $filename)
     {
         return new File(
             $this->getRealPath() . DIRECTORY_SEPARATOR . $filename,

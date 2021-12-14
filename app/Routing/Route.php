@@ -44,5 +44,4 @@ class Route
     {
         $this->variables = $variables;
     }
-
 }

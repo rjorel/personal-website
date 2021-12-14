@@ -29,7 +29,7 @@ class Application implements ArrayAccess
         }
     }
 
-    private function instantiateProvider($class): ServiceProvider
+    private function instantiateProvider(string $class): ServiceProvider
     {
         return new $class($this);
     }
@@ -39,7 +39,7 @@ class Application implements ArrayAccess
         return $this->getPath('app');
     }
 
-    private function getPath($path = null)
+    private function getPath(string $path = null)
     {
         return $this->path
             . ($path ? (DIRECTORY_SEPARATOR . $path) : '');

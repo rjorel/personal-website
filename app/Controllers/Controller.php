@@ -16,7 +16,7 @@ class Controller
         //
     }
 
-    protected function render($view, array $vars = [])
+    protected function render(string $view, array $vars = [])
     {
         return $this->getTwigEnvironment()->render($view, $vars);
     }

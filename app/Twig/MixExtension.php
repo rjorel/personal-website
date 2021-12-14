@@ -28,7 +28,7 @@ class MixExtension extends AbstractExtension
         return 'mix';
     }
 
-    public function getVersionedFilePath($path)
+    public function getVersionedFilePath(string $path)
     {
         $manifest = $this->getManifest();
 

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Controllers\Controller;
 use App\Routing\Route;
 use App\Routing\Router;
 use RuntimeException;
@@ -56,7 +57,7 @@ class Kernel
         return new $controller($this->app, $request);
     }
 
-    private function runAction($controller, Route $route)
+    private function runAction(Controller $controller, Route $route)
     {
         $action = $route->getAction();
         $vars = $route->getVariables();
