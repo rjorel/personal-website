@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class File extends SplFileInfo
 {
-    const HTML_DESCRIPTION_FILE = '.README.html';
+    private const HTML_DESCRIPTION_FILE = '.README.html';
 
     private string $relativePath;
 
