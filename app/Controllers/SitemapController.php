@@ -28,7 +28,7 @@ class SitemapController extends Controller
     private function getRouterUris()
     {
         return array_unique(array_map(
-            fn(Route $route) => $route->getUri(),
+            fn(Route $route) => $route->uri,
             $this->app->getRouter()->getRoutes()
         ));
     }

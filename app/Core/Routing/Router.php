@@ -44,7 +44,7 @@ class Router
     private function filterRoutesForUri(array $routes, string $uri): array
     {
         return array_filter($routes, function (Route $route) use ($uri) {
-            $regex = $this->formatForRegex($route->getUri());
+            $regex = $this->formatForRegex($route->uri);
 
             if (preg_match($regex, $uri, $matches)) {
                 $route->setVariables(array_slice($matches, 1));
@@ -67,6 +67,6 @@ class Router
 
     private function filterRoutesForMethod(array $routes, string $method): array
     {
-        return array_filter($routes, fn(Route $route) => $route->getMethod() == $method);
+        return array_filter($routes, fn(Route $route) => $route->method == $method);
     }
 }

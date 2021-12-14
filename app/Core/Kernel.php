@@ -47,14 +47,14 @@ class Kernel
 
     private function instantiateController(Request $request, Route $route): Controller
     {
-        $controller = $route->getController();
+        $controller = $route->controller;
 
         return new $controller($this->app, $request);
     }
 
     private function runAction(Controller $controller, Route $route)
     {
-        $action = $route->getAction();
+        $action = $route->action;
         $vars = $route->getVariables();
 
         if (!method_exists($controller, $action)) {
