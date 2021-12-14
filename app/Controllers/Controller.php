@@ -9,13 +9,11 @@ use Twig\Environment;
 
 class Controller
 {
-    protected $app;
-    protected $request;
-
-    public function __construct(Application $app, Request $request)
-    {
-        $this->app = $app;
-        $this->request = $request;
+    public function __construct(
+        protected Application $app,
+        protected Request $request
+    ) {
+        //
     }
 
     protected function render($view, array $vars = [])

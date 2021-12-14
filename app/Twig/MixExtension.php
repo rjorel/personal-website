@@ -8,13 +8,12 @@ use Twig\TwigFunction;
 
 class MixExtension extends AbstractExtension
 {
-    private $manifestDirectory;
+    private array $manifests = [];
 
-    private $manifests = [];
-
-    public function __construct($manifestDirectory)
-    {
-        $this->manifestDirectory = $manifestDirectory;
+    public function __construct(
+        private string $manifestDirectory
+    ) {
+        //
     }
 
     public function getFunctions()

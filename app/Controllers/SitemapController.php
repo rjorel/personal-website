@@ -20,7 +20,7 @@ class SitemapController extends Controller
     private function getUrls()
     {
         $baseUrl = $this->request->getSchemeAndHttpHost();
-        $uris = array_merge($this->getRouterUris(), $this->getRepositoryUris());
+        $uris = [...$this->getRouterUris(), ...$this->getRepositoryUris()];
 
         return array_map(fn(string $uri) => $baseUrl . $uri, $uris);
     }

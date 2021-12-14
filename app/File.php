@@ -17,7 +17,7 @@ class File extends SplFileInfo
         parent::__construct($filePath);
 
         if ($checkPath && !file_exists($filePath)) {
-            throw new FileException;
+            throw new FileException();
         }
 
         $this->relativePath = $this->removeDuplicatedSlashes($relativePath);
@@ -32,7 +32,7 @@ class File extends SplFileInfo
     {
         try {
             return $this->newChildFile(self::HTML_DESCRIPTION_FILE)->read();
-        } catch (FileException $e) {
+        } catch (FileException) {
             return '';
         }
     }
@@ -78,7 +78,7 @@ class File extends SplFileInfo
 
     public function isImage()
     {
-        return substr($this->getMimeType(), 0, 5) == 'image';
+        return str_starts_with($this->getMimeType(), 'image');
     }
 
     public function getMimeType()

@@ -23,7 +23,8 @@ class RepositoryController extends Controller
         $file = $this->getFileFromPath($path);
 
         return [
-            'file' => array_merge($this->getFileAttributes($file), [
+            'file' => [
+                ...$this->getFileAttributes($file),
                 'description' => $this->getHtmlFileDescription($file),
                 'content'     => $this->getHighlightedFileContent($file),
 
@@ -31,7 +32,7 @@ class RepositoryController extends Controller
                     fn(File $file) => $this->getFileAttributes($file),
                     $file->getChildFiles()
                 ))
-            ])
+            ]
         ];
     }
 
@@ -44,7 +45,7 @@ class RepositoryController extends Controller
     {
         try {
             return new File($this->getBasePath() . $path, $path);
-        } catch (FileException $e) {
+        } catch (FileException) {
             return new File($this->getBasePath(), '/');
         }
     }
@@ -84,7 +85,7 @@ class RepositoryController extends Controller
             return (new Highlighter())
                 ->highlight($file->getExtension(), $content)
                 ->value;
-        } catch (DomainException $e) {
+        } catch (DomainException) {
             return $content;
         }
     }

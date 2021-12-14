@@ -14,14 +14,11 @@ class Application implements ArrayAccess
         TwigServiceProvider::class
     ];
 
-    private $path;
+    private array $services = [];
 
-    private $services = [];
-
-    public function __construct($path)
-    {
-        $this->path = $path;
-
+    public function __construct(
+        private string $path
+    ) {
         $this->boot();
     }
 
@@ -63,22 +60,22 @@ class Application implements ArrayAccess
         return $this->getPath('templates');
     }
 
-    public function offsetExists($offset)
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->services[ $offset ]);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->services[ $offset ];
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->services[ $offset ] = $value;
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->services[ $offset ]);
     }

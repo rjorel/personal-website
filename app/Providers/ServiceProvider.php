@@ -6,11 +6,10 @@ use App\Application;
 
 abstract class ServiceProvider
 {
-    protected $app;
-
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
+    public function __construct(
+        protected Application $app
+    ) {
+        //
     }
 
     abstract public function register();

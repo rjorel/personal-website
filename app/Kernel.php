@@ -11,11 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Kernel
 {
-    private $app;
-
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
+    public function __construct(
+        private Application $app
+    ) {
+        //
     }
 
     public function handle(Request $request): Response
@@ -29,7 +28,7 @@ class Kernel
     {
         try {
             $route = $this->findRoute($request);
-        } catch (RuntimeException $e) {
+        } catch (RuntimeException) {
             return $this->app['twig']->render('views/errors/404.html.twig');
         }
 

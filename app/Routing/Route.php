@@ -4,19 +4,15 @@ namespace App\Routing;
 
 class Route
 {
-    private $uri;
-    private $method;
-    private $controller;
-    private $action;
+    private array $variables = [];
 
-    private $variables = [];
-
-    public function __construct($uri, $method, $controller, $action)
-    {
-        $this->uri = $uri;
-        $this->method = $method;
-        $this->controller = $controller;
-        $this->action = $action;
+    public function __construct(
+        private string $uri,
+        private string $method,
+        private string $controller,
+        private string $action
+    ) {
+        //
     }
 
     public function getUri()
