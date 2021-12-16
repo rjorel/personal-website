@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Core\Application;
 use App\Core\ExceptionHandler as BaseExceptionHandler;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;

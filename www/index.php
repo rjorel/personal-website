@@ -2,7 +2,8 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use App\Application;
+use App\AppConfig;
+use App\Core\Application;
 use App\Core\Kernel;
 use App\ExceptionHandler;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,8 @@ if (getenv('APP_DEBUG')) {
  * Instantiate app.
  */
 $app = new Application(
-    realpath(__DIR__ . '/..')
+    realpath(__DIR__ . '/..'),
+    new AppConfig()
 );
 
 /**

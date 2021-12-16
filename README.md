@@ -25,8 +25,8 @@ simple routing algorithm is implemented, to search across URIs and execute contr
 (Twig) are registered at app level, not in the core, using service providers.
 
 ### Service providers
-It's a simple way to add services to the application. Registering a service provider in `App\Application` class allows
-to configure and add any services to the application in a not-so-bad way.
+It's a simple way to add services to the application. Registering service providers in `App\AppConfig` class allows  to
+configure and add any services to the application in a not-so-bad way.
 
 ### Routes
 Routes are registered via `App\Providers\RouteServiceProvider` class.

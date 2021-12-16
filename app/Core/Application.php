@@ -7,14 +7,11 @@ use ArrayAccess;
 
 class Application implements ArrayAccess
 {
-    protected static array $providers = [
-        //
-    ];
-
     private array $services = [];
 
     public function __construct(
-        private string $path
+        private string $path,
+        private Config $config
     ) {
         $this->registerBaseServices();
 
@@ -28,9 +25,9 @@ class Application implements ArrayAccess
 
     private function registerProviders()
     {
-        array_walk(static::$providers, function (string $provider) {
+        foreach ($this->config->getProviders() as $provider) {
             $this->instantiateProvider($provider)->register();
-        });
+        }
     }
 
     private function instantiateProvider(string $class): ServiceProvider
