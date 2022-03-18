@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Core\Controller as BaseController;
+use Core\Controller as BaseController;
 use Twig\Environment as TwigEnvironment;
 
 abstract class Controller extends BaseController

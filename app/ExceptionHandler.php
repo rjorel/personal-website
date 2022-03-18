@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Core\Application;
-use App\Core\ExceptionHandler as BaseExceptionHandler;
 use Exception;
+use Core\Application;
+use Core\ExceptionHandler as BaseExceptionHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment as TwigEnvironment;
 

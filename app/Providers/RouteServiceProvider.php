@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Core\Routing\Router;
-use App\Core\ServiceProvider;
+use Core\Routing\Router;
+use Core\ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {

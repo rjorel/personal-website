@@ -3,7 +3,7 @@
 use App\Controllers\DefaultController;
 use App\Controllers\RepositoryController;
 use App\Controllers\SitemapController;
-use App\Core\Routing\Router;
+use Core\Routing\Router;
 
 /** @var Router $router */
 $router->get('/', DefaultController::class, 'index');

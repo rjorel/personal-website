@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Core\Routing\Route;
+use Core\Routing\Route;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Response;
 

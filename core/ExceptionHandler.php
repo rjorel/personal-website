@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core;
+namespace Core;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Request;

@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Core\ServiceProvider;
 use App\TwigMixExtension;
+use Core\ServiceProvider;
 use Twig\Environment as TwigEnvironment;
 use Twig\Loader\FilesystemLoader as TwigFilesystemLoader;
 

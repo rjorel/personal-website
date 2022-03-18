@@ -3,9 +3,9 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\AppConfig;
-use App\Core\Application;
-use App\Core\Kernel;
 use App\ExceptionHandler;
+use Core\Application;
+use Core\Kernel;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

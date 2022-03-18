@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core;
+namespace Core;
 
-use App\Core\Routing\Router;
 use ArrayAccess;
+use Core\Routing\Router;
 
 class Application implements ArrayAccess
 {

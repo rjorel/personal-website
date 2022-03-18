@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core;
+namespace Core;
 
-use App\Core\Routing\Route;
+use Core\Routing\Route;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

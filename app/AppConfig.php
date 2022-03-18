@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Core\Config;
 use App\Providers\RouteServiceProvider;
 use App\Providers\TwigServiceProvider;
+use Core\Config;
 
 class AppConfig implements Config
 {
