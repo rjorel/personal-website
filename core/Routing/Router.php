@@ -6,67 +6,64 @@ use RuntimeException;
 
 class Router
 {
-    private array $routes = [];
+    private array $routesByMethod = [];
 
-    public function get(string $uri, string $controller, string $action)
+    public function addRoute(string $method, string $uri, string $controller, string $action): void
     {
-        $this->addRoute(
-            new Route($uri, 'GET', $controller, $action)
-        );
+        $this->addRouteForMethod(new Route($uri, $controller, $action), $method);
     }
 
-    public function addRoute(Route $route)
+    private function addRouteForMethod(Route $route, string $method): void
     {
-        $this->routes[] = $route;
+        $this->routesByMethod[ $this->normalizeMethod($method) ][] = $route;
+    }
+
+    private function normalizeMethod(string $method): string
+    {
+        return strtolower($method);
     }
 
     public function getRoutes(): array
     {
-        return $this->routes;
+        return array_merge(...array_values($this->routesByMethod));
     }
 
     public function find(string $uri, string $method): Route
     {
-        $routes = $this->filterRoutesForUri($this->routes, $uri);
+        $route = $this->findRouteByUri(
+            $this->getRoutesForMethod($method),
+            $uri
+        );
 
-        $finalRoutes = $this->filterRoutesForMethod($routes, $method);
-
-        if (empty($finalRoutes)) {
-            throw new RuntimeException(
-                sprintf('No route for URI "%s" (method: %s)', $uri, $method)
-            );
+        if (!$route) {
+            throw new RuntimeException("No route for URI \"{$uri}\" (method: \"{$method}\")");
         }
 
-        // Return first route, to give a logical priority during route registration.
-        return array_shift($finalRoutes);
+        return $route;
     }
 
-    private function filterRoutesForUri(array $routes, string $uri): array
+    private function getRoutesForMethod(string $method): array
     {
-        return array_filter($routes, function (Route $route) use ($uri) {
-            $regex = $this->formatForRegex($route->uri);
+        return $this->routesByMethod[ $this->normalizeMethod($method) ];
+    }
 
-            if (preg_match($regex, $uri, $matches)) {
+    private function findRouteByUri(array $routes, string $uri): ?Route
+    {
+        $matchingRoutes = array_filter($routes, function (Route $route) use ($uri) {
+            if (preg_match($this->getUriRegex($route->uri), $uri, $matches)) {
                 $route->setVariables(array_slice($matches, 1));
                 return true;
             }
 
             return false;
         });
+
+        // Return first route, to give a logical priority during route registration.
+        return array_shift($matchingRoutes);
     }
 
-    private function formatForRegex(string $uri)
+    private function getUriRegex(string $uri): string
     {
-        return '/^' . $this->escapeSlashes($uri) . '$/';
-    }
-
-    private function escapeSlashes(string $uri)
-    {
-        return str_replace('/', '\/', $uri);
-    }
-
-    private function filterRoutesForMethod(array $routes, string $method): array
-    {
-        return array_filter($routes, fn(Route $route) => $route->method == $method);
+        return '/^' . str_replace('/', '\/', $uri) . '$/';
     }
 }

@@ -6,10 +6,10 @@ use App\Controllers\SitemapController;
 use Core\Routing\Router;
 
 /** @var Router $router */
-$router->get('/', DefaultController::class, 'index');
-$router->get('/skills', DefaultController::class, 'skills');
-$router->get('/achievements', DefaultController::class, 'achievements');
-$router->get('/about', DefaultController::class, 'about');
-$router->get('/repository-file', RepositoryController::class, 'getFile');
-$router->get('/repository', RepositoryController::class, 'index');
-$router->get('/sitemap\.xml', SitemapController::class, 'index');
+$router->addRoute('GET', '/', DefaultController::class, 'index');
+$router->addRoute('GET', '/skills', DefaultController::class, 'skills');
+$router->addRoute('GET', '/achievements', DefaultController::class, 'achievements');
+$router->addRoute('GET', '/about', DefaultController::class, 'about');
+$router->addRoute('GET', '/repository-file', RepositoryController::class, 'getFile');
+$router->addRoute('GET', '/repository', RepositoryController::class, 'index');
+$router->addRoute('GET', '/sitemap\.xml', SitemapController::class, 'index');
