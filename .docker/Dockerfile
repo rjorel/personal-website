@@ -32,7 +32,7 @@ RUN chmod +x /entrypoint.sh
 WORKDIR /srv/
 COPY ./composer.json ./composer.lock /srv/
 
-RUN composer install --quiet --no-dev --no-interaction --no-scripts --no-cache --prefer-dist
+RUN composer install --no-cache --no-dev --no-interaction --no-scripts --no-progress
 
 COPY . /srv/
 COPY --from=builder /app/www/ /srv/www/
