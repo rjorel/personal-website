@@ -5,7 +5,7 @@ COPY ./package.json ./yarn.lock /app/
 
 RUN yarn install --silent
 
-COPY ./webpack.mix.js /app/
+COPY ./purgecss.config.js ./webpack.mix.js /app/
 COPY ./assets/ /app/assets/
 COPY ./templates/ /app/templates/
 
