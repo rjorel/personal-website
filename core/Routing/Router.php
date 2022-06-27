@@ -64,6 +64,6 @@ class Router
 
     private function getUriRegex(string $uri): string
     {
-        return '/^' . str_replace('/', '\/', $uri) . '$/';
+        return '/^' . preg_quote($uri, '/') . '$/';
     }
 }
