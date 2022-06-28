@@ -7,8 +7,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ghcr.io/${{ github.repository }}:${{ github.sha }}
-  LATEST_IMAGE_NAME: ghcr.io/${{ github.repository }}:latest
+  APP_IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
+  LATEST_APP_IMAGE: ghcr.io/${{ github.repository }}:latest
 
 jobs:
   build_image:
@@ -26,13 +26,46 @@ jobs:
 
       - name: Build and push
         run: |
-          docker pull ${{ env.LATEST_IMAGE_NAME }} > /dev/null || true
+          docker pull ${{ env.LATEST_APP_IMAGE }} > /dev/null || true
 
           docker build . \
-            --cache-from ${{ env.LATEST_IMAGE_NAME }} \
+            --cache-from ${{ env.LATEST_APP_IMAGE }} \
             --file .docker/Dockerfile \
-            --tag ${{ env.IMAGE_NAME }} \
-            --tag ${{ env.LATEST_IMAGE_NAME }}
+            --tag ${{ env.APP_IMAGE }} \
+            --tag ${{ env.LATEST_APP_IMAGE }}
 
-          docker push ${{ env.IMAGE_NAME }} > /dev/null
-          docker push ${{ env.LATEST_IMAGE_NAME }} > /dev/null
+          docker push ${{ env.APP_IMAGE }} > /dev/null
+          docker push ${{ env.LATEST_APP_IMAGE }} > /dev/null
+
+  deploy_app:
+    runs-on: ubuntu-latest
+    needs: [ build_image ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy app image
+        run: |
+          eval $(ssh-agent -s)
+          echo "${{ secrets.USER_PRIVATE_KEY }}" | ssh-add -
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+          scp ./.docker/docker-compose.yml ${{ secrets.USER }}@${{ secrets.SERVER_IP }}:${{ secrets.DEPLOY_DIR }}
+
+          ssh ${{ secrets.USER }}@${{ secrets.SERVER_IP }} " \
+            set -e; \
+
+            cd ${{ secrets.DEPLOY_DIR }}; \
+
+            export APP_IMAGE=${{ env.APP_IMAGE }}; \
+
+            docker login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} ${{ env.REGISTRY }}; \
+
+            docker pull ${{ env.APP_IMAGE }} > /dev/null; \
+            docker-compose up --detach --remove-orphans; \
+
+            docker logout ${{ env.REGISTRY }}; \
+          "
