@@ -11,6 +11,3 @@ npm-debug.log
 /www/repository-files
 
 .env
-deploy.sh
-
-*.tar
