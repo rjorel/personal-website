@@ -16,7 +16,7 @@ mix
   .sass('assets/sass/app.scss', 'www/css/')
   .js('assets/js/app.js', 'www/js/')
   .js('assets/js/repository.js', 'www/js/')
-  .copyDirectory('assets/img', 'www/images');
+  .copyDirectory('assets/images', 'www/images');
 
 if (mix.inProduction()) {
   mix.version()
