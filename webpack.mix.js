@@ -13,8 +13,9 @@ const mix = require('laravel-mix');
 
 mix
   .setPublicPath('www')
-  .sass('assets/sass/app.scss', 'www/css/app.css')
-  .js('assets/js/app.js', 'www/js/app.js')
+  .sass('assets/sass/app.scss', 'www/css/')
+  .js('assets/js/app.js', 'www/js/')
+  .js('assets/js/repository.js', 'www/js/')
   .copyDirectory('assets/img', 'www/images');
 
 if (mix.inProduction()) {
