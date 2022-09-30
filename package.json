@@ -10,7 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "@fullhuman/postcss-purgecss": "^4.0",
+        "@fullhuman/postcss-purgecss": "^5.0",
         "bootstrap": "^5.0",
         "bootstrap-icons": "^1.0",
         "laravel-mix": "^6.0",
