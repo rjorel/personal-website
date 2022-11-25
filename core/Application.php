@@ -18,12 +18,12 @@ class Application implements ArrayAccess
         $this->registerProviders();
     }
 
-    private function registerBaseServices()
+    private function registerBaseServices(): void
     {
         $this->services[ Router::class ] = new Router();
     }
 
-    private function registerProviders()
+    private function registerProviders(): void
     {
         foreach ($this->config->getProviders() as $provider) {
             $this->instantiateProvider($provider)->register();
@@ -35,27 +35,27 @@ class Application implements ArrayAccess
         return new $class($this);
     }
 
-    public function getTemplatePath()
+    public function getTemplatePath(): string
     {
         return $this->getPath('templates');
     }
 
-    private function getPath(string $path = null)
+    private function getPath(string $path = null): string
     {
         return $this->path . ($path ? (DIRECTORY_SEPARATOR . $path) : '');
     }
 
-    public function getEnvironment()
+    public function getEnvironment(): string
     {
-        return getenv('APP_ENV');
+        return getenv('APP_ENV') ?: '';
     }
 
-    public function getCachePath()
+    public function getCachePath(): string
     {
         return $this->getPath('var');
     }
 
-    public function getPublicPath()
+    public function getPublicPath(): string
     {
         return $this->getPath('www');
     }

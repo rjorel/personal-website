@@ -10,5 +10,5 @@ abstract class ServiceProvider
         //
     }
 
-    abstract public function register();
+    abstract public function register(): void;
 }

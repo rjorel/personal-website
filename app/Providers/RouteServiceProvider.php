@@ -7,12 +7,12 @@ use Core\ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->loadRoutes($this->app->getRouter());
     }
 
-    private function loadRoutes(Router $router)
+    private function loadRoutes(Router $router): void
     {
         (function () use ($router) {
             require __DIR__ . '/../routes.php';

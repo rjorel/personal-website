@@ -23,12 +23,12 @@ class File extends SplFileInfo
         $this->relativePath = $this->removeDuplicatedSlashes($relativePath);
     }
 
-    private function removeDuplicatedSlashes(string $path)
+    private function removeDuplicatedSlashes(string $path): string
     {
         return str_replace('//', '/', $path);
     }
 
-    public function getHtmlDescription()
+    public function getHtmlDescription(): string
     {
         try {
             return $this->newChildFile(self::HTML_DESCRIPTION_FILE)->read();
@@ -37,14 +37,14 @@ class File extends SplFileInfo
         }
     }
 
-    private function read()
+    private function read(): string
     {
         $fd = $this->openFile('r');
 
         return $fd->fread($fd->getSize());
     }
 
-    private function newChildFile(string $filename)
+    private function newChildFile(string $filename): File
     {
         return new File(
             $this->getRealPath() . DIRECTORY_SEPARATOR . $filename,
@@ -52,7 +52,7 @@ class File extends SplFileInfo
         );
     }
 
-    public function getRelativePath()
+    public function getRelativePath(): string
     {
         return $this->relativePath;
     }
@@ -66,32 +66,32 @@ class File extends SplFileInfo
         return $this->read();
     }
 
-    public function isArchive()
+    public function isArchive(): bool
     {
         return in_array($this->getExtension(), ['zip', 'rar']);
     }
 
-    public function isPdf()
+    public function isPdf(): bool
     {
         return $this->getExtension() == 'pdf';
     }
 
-    public function isImage()
+    public function isImage(): bool
     {
         return str_starts_with($this->getMimeType(), 'image');
     }
 
-    public function getMimeType()
+    public function getMimeType(): string
     {
         return mime_content_type($this->getRealPath());
     }
 
-    public function getRelativeParentPath()
+    public function getRelativeParentPath(): string
     {
         return pathinfo($this->relativePath, PATHINFO_DIRNAME);
     }
 
-    public function getChildFiles()
+    public function getChildFiles(): array
     {
         if (!$this->isDir()) {
             return [];
@@ -103,7 +103,7 @@ class File extends SplFileInfo
         );
     }
 
-    private function getChildFileInfo()
+    private function getChildFileInfo(): array
     {
         $finder = Finder::create()
             ->depth('== 0')

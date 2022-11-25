@@ -17,7 +17,7 @@ class SitemapController extends Controller
         return $this->makeXmlResponse($content);
     }
 
-    private function getUrls()
+    private function getUrls(): array
     {
         $baseUrl = $this->request->getSchemeAndHttpHost();
         $uris = [...$this->getRouterUris(), ...$this->getRepositoryUris()];
@@ -25,7 +25,7 @@ class SitemapController extends Controller
         return array_map(fn(string $uri) => $baseUrl . $uri, $uris);
     }
 
-    private function getRouterUris()
+    private function getRouterUris(): array
     {
         return array_unique(array_map(
             fn(Route $route) => $route->uri,
@@ -33,7 +33,7 @@ class SitemapController extends Controller
         ));
     }
 
-    private function getRepositoryUris()
+    private function getRepositoryUris(): array
     {
         $basePath = $this->getBasePath();
 
@@ -43,12 +43,12 @@ class SitemapController extends Controller
         );
     }
 
-    private function getBasePath()
+    private function getBasePath(): string
     {
         return $this->app->getPublicPath() . RepositoryController::REPOSITORY_STORAGE_DIRECTORY;
     }
 
-    private function getDirectories()
+    private function getDirectories(): array
     {
         $finder = Finder::create()
             ->in($this->getBasePath())
@@ -59,7 +59,7 @@ class SitemapController extends Controller
         );
     }
 
-    private function makeXmlResponse(string $content)
+    private function makeXmlResponse(string $content): Response
     {
         return new Response($content, 200, [
             'Content-Type' => 'text/xml'

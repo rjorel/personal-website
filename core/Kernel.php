@@ -24,7 +24,7 @@ class Kernel
         return $this->prepareResponse($response);
     }
 
-    private function sendRequest(Request $request)
+    private function sendRequest(Request $request): Response|array|string
     {
         try {
             $route = $this->findRoute($request);
@@ -37,7 +37,7 @@ class Kernel
         return $this->runAction($controller, $route);
     }
 
-    private function findRoute(Request $request)
+    private function findRoute(Request $request): Route
     {
         return $this->app->getRouter()->find(
             $request->getPathInfo(),
@@ -52,7 +52,7 @@ class Kernel
         return new $controller($this->app, $request);
     }
 
-    private function runAction(Controller $controller, Route $route)
+    private function runAction(Controller $controller, Route $route): Response|array|string
     {
         $action = $route->action;
         $vars = $route->getVariables();

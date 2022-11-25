@@ -36,12 +36,12 @@ class RepositoryController extends Controller
         ];
     }
 
-    private function removeMultiPoints(string $path)
+    private function removeMultiPoints(string $path): string
     {
         return preg_replace('/\.+/', '.', $path);
     }
 
-    private function getFileFromPath($path)
+    private function getFileFromPath($path): File
     {
         try {
             return new File($this->getBasePath() . $path, $path);
@@ -50,12 +50,12 @@ class RepositoryController extends Controller
         }
     }
 
-    private function getBasePath()
+    private function getBasePath(): string
     {
         return $this->app->getPublicPath() . self::REPOSITORY_STORAGE_DIRECTORY;
     }
 
-    private function getFileAttributes(File $file)
+    private function getFileAttributes(File $file): array
     {
         return [
             'name'               => $file->getFilename(),
@@ -70,12 +70,12 @@ class RepositoryController extends Controller
         ];
     }
 
-    private function getHtmlFileDescription(File $file)
+    private function getHtmlFileDescription(File $file): ?string
     {
         return preg_replace(['/[\s\n]+/'], [' '], $file->getHtmlDescription());
     }
 
-    private function getHighlightedFileContent(File $file)
+    private function getHighlightedFileContent(File $file): ?string
     {
         if (!$content = $file->getContent()) {
             return null;

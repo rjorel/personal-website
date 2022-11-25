@@ -9,7 +9,7 @@ use Twig\Loader\FilesystemLoader as TwigFilesystemLoader;
 
 class TwigServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $twig = new TwigEnvironment(
             new TwigFilesystemLoader($this->app->getTemplatePath()),

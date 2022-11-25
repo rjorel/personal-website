@@ -19,7 +19,7 @@ class Route
         return $this->variables;
     }
 
-    public function setVariables(array $variables)
+    public function setVariables(array $variables): void
     {
         $this->variables = $variables;
     }
