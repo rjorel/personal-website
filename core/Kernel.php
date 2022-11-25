@@ -11,8 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 class Kernel
 {
     public function __construct(
-        private Application $app,
-        private ExceptionHandler $exceptionHandler
+        private readonly Application $app,
+        private readonly ExceptionHandler $exceptionHandler
     ) {
         //
     }

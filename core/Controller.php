@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 abstract class Controller
 {
     public function __construct(
-        protected Application $app,
-        protected Request $request
+        protected readonly Application $app,
+        protected readonly Request $request
     ) {
         //
     }

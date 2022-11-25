@@ -2,16 +2,16 @@
 
 namespace App;
 
-use Exception;
 use Core\Application;
 use Core\ExceptionHandler as BaseExceptionHandler;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment as TwigEnvironment;
 
 class ExceptionHandler implements BaseExceptionHandler
 {
     public function __construct(
-        private Application $app
+        private readonly Application $app
     ) {
         //
     }

@@ -10,8 +10,8 @@ class Application implements ArrayAccess
     private array $services = [];
 
     public function __construct(
-        private string $path,
-        private Config $config
+        private readonly string $path,
+        private readonly Config $config
     ) {
         $this->registerBaseServices();
 
