@@ -5,7 +5,7 @@ This is my personal website. Not an incredible one, just a way to present myself
 sharing little projects.
 
 After making a _from scratch_ version and Laravel-based one, I decided to develop again it by using famous PHP and JS
-packages (Symfony requests, Twig, Laravel mix and so on). Nothing new, just a gathering of existing components.
+packages (Symfony requests, Twig, Vite and so on). Nothing new, just a gathering of existing components.
 
 Even if it's not a piece of art, I think it can be an example of how to build simple websites..
 
@@ -32,9 +32,9 @@ configure and add any services to the application in a not-so-bad way.
 Routes are registered via `App\Providers\RouteServiceProvider` class.
 
 ### Twig extension
-I use Laravel mix to compile CSS and JS files. In production, result files are minified and versioned, but Twig does not
-natively include an extension to handle mix output. Twig mix extension is inspired by Laravel `Mix` 
-[class](https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Mix.php).
+I use Vite to bundle assets. In production, output files are minified and versioned, but Twig does not natively include
+an extension to handle them. Twig Vite asset extension is inspired by Laravel `Vite` 
+[class](https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Vite.php).
 
 ### Repository
 Repository uses JS to be interactive and avoid page reloading for each visited file or directory. Information about the
