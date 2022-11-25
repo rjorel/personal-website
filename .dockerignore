@@ -4,11 +4,7 @@
 /node_modules/
 /vendor/
 
-/www/mix-manifest.json
-/www/js
-/www/css
-/www/images
-/www/fonts
+/www/build
 /www/repository-files
 
 /var/*

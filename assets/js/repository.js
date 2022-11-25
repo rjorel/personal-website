@@ -1,3 +1,7 @@
+import barrelImage from '../images/repository/barrel.png';
+import beerImage from '../images/repository/beer.png';
+import dynamiteImage from '../images/repository/dynamite.png';
+
 const REPOSITORY_URL = '/repository';
 const REPOSITORY_FILE_URL = '/repository-file?p=';
 
@@ -103,17 +107,14 @@ function Repository() {
   }
 
   function setFileListItemText(item, file) {
-    item.innerHTML =
-      '<img src="' + '/images/repository/'
-      + getIconName(file) + '.png' + '" class="me-1" />'
-      + file.name;
+    item.innerHTML = `<img src=${ getIconImage(file) } class="me-1" /> ${ file.name }`;
 
     item.classList.add('text-primary', 'list-none', 'mb-1');
     item.setAttribute('role', 'button');
   }
 
-  function getIconName(file) {
-    return file.isDir ? 'barrel' : (file.isArchive ? 'dynamite' : 'beer');
+  function getIconImage(file) {
+    return file.isDir ? barrelImage : (file.isArchive ? dynamiteImage : beerImage);
   }
 
   function handleClickOnListItem(item, file) {

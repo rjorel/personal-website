@@ -1,1 +1,5 @@
-require('bootstrap/js/src/collapse');
+import 'bootstrap/js/src/collapse';
+
+import.meta.glob([
+  '../images/**'
+]);

@@ -9,7 +9,7 @@ COPY ./purgecss.config.js ./webpack.mix.js /app/
 COPY ./assets/ /app/assets/
 COPY ./templates/ /app/templates/
 
-RUN yarn run production
+RUN yarn run build
 
 
 FROM php:8.1-fpm-alpine

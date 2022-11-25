@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\TwigMixExtension;
+use App\TwigViteAssetExtension;
 use Core\ServiceProvider;
 use Twig\Environment as TwigEnvironment;
 use Twig\Loader\FilesystemLoader as TwigFilesystemLoader;
@@ -17,13 +17,13 @@ class TwigServiceProvider extends ServiceProvider
         );
 
         $twig->addExtension(
-            new TwigMixExtension($this->app->getPublicPath())
+            new TwigViteAssetExtension($this->app->getPublicPath())
         );
 
         $this->app[ TwigEnvironment::class ] = $twig;
     }
 
-    private function getTwigEnvironmentOptions()
+    private function getTwigEnvironmentOptions(): array
     {
         if ($this->isProductionEnvironment()) {
             return [
@@ -37,7 +37,7 @@ class TwigServiceProvider extends ServiceProvider
         ];
     }
 
-    private function isProductionEnvironment()
+    private function isProductionEnvironment(): string
     {
         return $this->app->getEnvironment() == 'production';
     }

@@ -23,7 +23,7 @@
             <div class="mb-4">
                 <button class="btn btn-link shadow-none mr-2"
                         id="js_goBackButton">
-                    <img src="/images/repository/colt.png" class="rotate-hover-10" />
+                    <img src="{{ vite_asset('assets/images/repository/colt.png') }}" class="rotate-hover-10" />
                 </button>
 
                 <span class="p-2 border border-2 bg-light rounded" style="font-size: 20px;"
@@ -44,5 +44,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ mix('/js/repository.js') }}"></script>
+    <script type="module" src="{{ vite_asset('assets/js/repository.js') }}"></script>
 {% endblock %}

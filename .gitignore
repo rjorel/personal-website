@@ -3,11 +3,7 @@
 /vendor
 npm-debug.log
 
-/www/mix-manifest.json
-/www/js
-/www/css
-/www/images
-/www/fonts
+/www/build
 /www/repository-files
 
 .env

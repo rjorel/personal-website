@@ -1,6 +1,8 @@
 /**
  * Intellij Idea-like styling (c) Vasily Polovnyov <vast@whiteants.net>
  */
+
+/*! purgecss start ignore */
 .hljs {
     display: block;
     overflow-x: auto;
