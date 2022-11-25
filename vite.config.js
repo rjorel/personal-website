@@ -12,10 +12,10 @@ export default defineConfig({
 
     rollupOptions: {
       input: [
-        './assets/sass/app.scss',
+        './resources/sass/app.scss',
 
-        './assets/js/app.js',
-        './assets/js/repository.js'
+        './resources/js/app.js',
+        './resources/js/repository.js'
       ]
     }
   },
@@ -25,7 +25,7 @@ export default defineConfig({
       plugins: [
         purgeCss({
           content: [
-            './assets/**/*.js',
+            './resources/**/*.js',
             './templates/**/*.html.twig'
           ],
           safelist: [

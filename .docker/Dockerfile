@@ -6,7 +6,7 @@ COPY ./package.json ./yarn.lock /app/
 RUN yarn install --silent
 
 COPY ./vite.config.js /app/
-COPY ./assets/ /app/assets/
+COPY ./resources/ /app/resources/
 COPY ./templates/ /app/templates/
 
 RUN yarn run build
