@@ -12,7 +12,7 @@ COPY ./templates/ /app/templates/
 RUN yarn run build
 
 
-FROM php:8.1-fpm-alpine
+FROM php:8.2-fpm-alpine
 
 RUN set -ex; \
         apk add --update --quiet --no-cache \
