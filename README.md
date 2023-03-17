@@ -45,4 +45,4 @@ Making and updating a sitemap file is usually boring. Because repository may oft
 generate the sitemap.
 
 ### No tests
-Yes, I know, that's really (really) bad.. but for a website, should I do test something? Maybe not..
+Yes, I know, that's really (really) bad.. but for my personal website, should I do test something? Maybe not..
