@@ -1,15 +1,15 @@
 FROM node:lts-alpine AS builder
 
 WORKDIR /app/
-COPY ./package.json ./yarn.lock /app/
+COPY ./package.json ./package-lock.json /app/
 
-RUN yarn install --silent
+RUN npm clean-install
 
 COPY ./vite.config.js /app/
 COPY ./resources/ /app/resources/
 COPY ./templates/ /app/templates/
 
-RUN yarn run build
+RUN npm run build
 
 
 FROM php:8.2-fpm-alpine
