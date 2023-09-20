@@ -23,8 +23,7 @@
             </td>
             <td>
                 Le langage que je pratique quotidiennement depuis que je suis devenu actif (en mi-2016). Je l'ai
-                beaucoup utilisé avec Laravel mais j'ai aussi un peu exploré Symfony et je m'en sers pour écrire des
-                scripts de temps à autre.
+                beaucoup utilisé avec Laravel et je m'en sers pour écrire des scripts de temps à autre.
             </td>
         </tr>
         <tr>
@@ -34,8 +33,9 @@
             <td>
                 Mon tout premier langage, si je ne prends pas en compte le BASIC de
                 l'<a href="https://en.wikipedia.org/wiki/Amstrad_CPC">Amstrad CPC</a> et celui des
-                calculettes CASIO. Je me tourne naturellement vers lui dès lors que je veux faire des scripts ou des
-                petits programmes.
+                calculettes CASIO. Je me tourne assez facilement vers lui pour faire des scripts, mais avec le temps je
+                trouve de moins en moins de plaisir à l'utiliser, notammnent à cause de son système de typage qui rend
+                la tâche difficile aux IDEs concernant l'inférence de types (même PyCharm galère, c'est dire).
             </td>
         </tr>
         <tr>
@@ -47,6 +47,16 @@
                 tous mes développements web, qu'ils soient professionnels ou personnels. Je m'en suis beaucoup moqué par
                 le passé (voir <a href="/repository#/javascript">ici</a>), mais ‒ syndrôme de Stockholm oblige ‒ je
                 l'apprécie de plus en plus.. comme quoi, tout peut arriver.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://www.typescriptlang.org/">TypeScript</a>
+            </td>
+            <td>
+                Sur-ensemble de JavaScript pour ajouter le typage statique, c'est à la mode de tout passer vers TS donc
+                je m'y suis mis (quel mouton ! 😁). J'écris maintenant tous mes scripts avec TS dès lors qu'un projet
+                est configuré avec Vite, et je migre progressivement l'existant dessus (scripts, composants Vue...).
             </td>
         </tr>
         <tr>
@@ -75,7 +85,7 @@
         </tbody>
         <thead>
         <tr>
-            <th colspan="2"><i>Frameworks</i></th>
+            <th colspan="2"><i>Frameworks</i> / Bibliothèques</th>
         </tr>
         </thead>
         <tbody>
@@ -84,8 +94,8 @@
                 <a href="https://laravel.com/">Laravel</a>
             </td>
             <td>
-                Ce merveilleux <i>framework</i> est à la base de tous mes développements professionnels. Je m'en sers
-                aussi un peu personnellement et je trouve beaucoup de plaisir à travailler avec.
+                Ce merveilleux <i>framework</i> est à la base de presque tous mes développements professionnels et je
+                trouve beaucoup de plaisir à travailler avec.
             </td>
         </tr>
         <tr>
@@ -94,8 +104,16 @@
             </td>
             <td>
                 Intégré par défaut dans Laravel, il faut bien avouer que ce <i>framework</i> est agréable à utiliser
-                (même si c'est du JavaScript 😁). Il me permet surtout de rajouter des composants dynamiques au sein
-                d'applications PHP.
+                (même si c'est du JavaScript 😁). Il me permet notamment de rajouter des composants dynamiques au sein
+                d'applications PHP, mais aussi de développer des applications <i>frontend</i>.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://getbootstrap.com/">Bootstrap</a>
+            </td>
+            <td>
+                En ce qui concerne le <i>responsive design</i>, je ne me sers QUE de cette bibliothèque.
             </td>
         </tr>
         <tr>
@@ -107,31 +125,6 @@
                 (<i>Content Management System</i>), alors il est difficile de passer à côté. Mon expérience de WordPress
                 est assez modeste, j'ai déjà développé des <i>plugins</i> mais jamais de thèmes personnalisés. Je m'en
                 sers généralement pour monter des sites web à visée principalement informative.
-            </td>
-        </tr>
-        </tbody>
-        <thead>
-        <tr>
-            <th colspan="2">Bibliothèques</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <a href="https://jquery.com/">jQuery</a>
-            </td>
-            <td>
-                Cette bibliothèque était pratique pour simplifier pas mal de travail en JavaScript, mais l'API native de
-                JavaScript sur la plupart des navigateurs tend à rendre jQuery obsolète pour mes besoins. De ce fait,
-                je m'en sers de moins en moins dans mes applis web.
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="http://getbootstrap.com/">Bootstrap</a>
-            </td>
-            <td>
-                En ce qui concerne le <i>responsive design</i>, je ne me sers QUE de cette bibliothèque.
             </td>
         </tr>
         </tbody>
@@ -172,7 +165,7 @@
             </td>
             <td>
                 C'est bien simple, je suis ultra fan des IDEs de cette entreprise. Je me sers principalement de
-                PhpStorm et PyCharm, mais je me doute que tous leurs autres IDEs sont excellents !
+                PhpStorm, WebStorm et PyCharm, mais je me doute que tous leurs autres IDEs sont excellents !
             </td>
         </tr>
         <tr>
@@ -232,12 +225,22 @@
         </tr>
         <tr>
             <td>
+                <a href="https://git-scm.com/">GitLab CI/CD</a>
+            </td>
+            <td>
+                Dans le cadre professionnel, je mets en prod toutes mes applis via le CI/CD de GitLab. Les
+                <i>pipelines</i> lancent généralement les tests automatisés, vérifient le style du code, etc avant de
+                déployer les applications.
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <a href="https://www.docker.com/">Docker</a>
             </td>
             <td>
-                Bien que je ne sois pas encore à <i>containeriser</i> (joli anglissisme) toutes mes applications, cette
-                technologie me sert de plus en plus, et de ce fait je commence à la taquiner un peu.
-                Révélation : ce site tourne sous Docker en production (je sais, c'est dingue 😁).
+                Bien que j'ai mis du temps à m'y mettre, j'ai réussi à migrer progressivement toutes mes applications
+                vers Docker pour les servir en production. La plupart d'entre elles sont aussi accompagnées de quoi les
+                lancer en local via Docker Compose.
             </td>
         </tr>
         <tr>
@@ -245,9 +248,10 @@
                 <a href="https://www.vagrantup.com/">Vagrant</a>
             </td>
             <td>
-                Encore une techno que je n'utilise pas tous les 4 matins non plus, mais dès lors qu'il s'agit de décrire
-                précisément un environnement de développement pour un projet, Vagrant apparaît comme un outil de premier
-                choix.
+                Je n'utilise pas cette techno tous les 4 matins, mais je m'en suis servi pour décrire les environnements
+                de développement des applis principales de mon entreprise. J'ai cependant migré vers Docker Compose pour
+                répondre au même besoin, notamment car les images Docker sont moins lourdes que celles Vagrant, et que
+                le temps de lancement d'une VM Vagrant est plus long que celui des conteneurs Docker.
             </td>
         </tr>
         </tbody>
