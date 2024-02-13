@@ -10,7 +10,7 @@ use Twig\TwigFunction;
 class TwigViteAssetExtension extends AbstractExtension
 {
     private const BUILD_DIRECTORY = '/build/';
-    private const MANIFEST_FILENAME = 'manifest.json';
+    private const MANIFEST_FILE_PATH = '.vite/manifest.json';
 
     private ?array $cachedManifest = null;
 
@@ -60,6 +60,6 @@ class TwigViteAssetExtension extends AbstractExtension
 
     private function getManifestPath(): string
     {
-        return $this->publicDirectory . self::BUILD_DIRECTORY . self::MANIFEST_FILENAME;
+        return $this->publicDirectory . self::BUILD_DIRECTORY . self::MANIFEST_FILE_PATH;
     }
 }
