@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class RepositoryController extends Controller
 {
-    public const REPOSITORY_STORAGE_DIRECTORY = '/repository-files';
+    public const string REPOSITORY_STORAGE_DIRECTORY = '/repository-files';
 
     public function index()
     {

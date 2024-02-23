@@ -9,8 +9,8 @@ use Twig\TwigFunction;
 // Inspired by https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Vite.php
 class TwigViteAssetExtension extends AbstractExtension
 {
-    private const BUILD_DIRECTORY = '/build/';
-    private const MANIFEST_FILE_PATH = '.vite/manifest.json';
+    private const string BUILD_DIRECTORY = '/build/';
+    private const string MANIFEST_FILE_PATH = '.vite/manifest.json';
 
     private ?array $cachedManifest = null;
 

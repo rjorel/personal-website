@@ -3,7 +3,7 @@
     "description": "Personal website",
     "type": "project",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-fileinfo": "*",
         "ext-json": "*",
         "scrivo/highlight.php": "^9.0",
