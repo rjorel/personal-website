@@ -5,7 +5,7 @@ COPY ./package.json ./package-lock.json /app/
 
 RUN npm clean-install
 
-COPY ./vite.config.js /app/
+COPY ./vite.config.ts /app/
 COPY ./resources/ /app/resources/
 COPY ./templates/ /app/templates/
 
