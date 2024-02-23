@@ -25,7 +25,7 @@ export default defineConfig({
       plugins: [
         purgeCss({
           content: [
-            './resources/**/*.js',
+            './resources/**/*.ts',
             './templates/**/*.html.twig'
           ],
           safelist: [
