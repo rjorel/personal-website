@@ -14,7 +14,7 @@ export default defineConfig({
       input: [
         './resources/sass/app.scss',
 
-        './resources/js/app.js',
+        './resources/ts/app.ts',
         './resources/js/repository.js'
       ]
     }
