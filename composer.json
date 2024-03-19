@@ -23,7 +23,7 @@
         "optimize-autoloader": true
     },
     "scripts": {
-        "serve": "APP_DEBUG=true php -S localhost:8000 -t www server.php"
+        "serve": "APP_DEBUG=true php -S localhost:8000 -t www"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
