@@ -1,9 +1,14 @@
+$primary: #412004;
+
+$link-color: lighten($primary, 10%);
+$link-decoration: none;
+
+$nav-link-font-size: 18px;
+
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
 @import "./highlight-idea";
-
-$brown-color: #412004;
 
 @font-face {
     font-family: 'duality';
@@ -16,43 +21,13 @@ body {
 }
 
 main {
-    padding: 5rem;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
     background: url('../images/sheet.jpg');
-    min-height: calc(95vh);
-}
-
-.table-brown th {
-    color: #fff;
-    background-color: $brown-color;
-    border-color: $brown-color;
-}
-
-.table-brown th,
-.table-brown td,
-.table-brown > thead th,
-.table-brown > tbody td {
-    border: 1px solid $brown-color;
-}
-
-.table-brown td {
-    background: #fff;
 }
 
 .font-duality {
     font-family: duality, serif;
-}
-
-.bg-brown {
-    background-color: $brown-color;
-}
-
-.btn-brown {
-    color: white !important;
-    background-color: $brown-color !important;
-}
-
-.border-brown {
-    border-color: $brown-color !important;
 }
 
 .list-none {
@@ -65,15 +40,9 @@ main {
 
 // For repository files.
 .img-start {
-    @extend .img-fluid;
-    @extend .float-start;
-    @extend .mb-3;
-    @extend .me-3
+    @extend .img-fluid, .float-start, .mb-3, .me-3;
 }
 
 .img-end {
-    @extend .img-fluid;
-    @extend .float-end;
-    @extend .mb-3;
-    @extend .ms-3;
+    @extend .img-fluid, .float-end, .mb-3, .ms-3;
 }

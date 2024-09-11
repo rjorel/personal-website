@@ -127,7 +127,7 @@ class Repository {
     private setFileListItemText(item: HTMLElement, file: CustomFile): void {
         item.innerHTML = `<img src=${ this.getIconImage(file) } class="me-1" /> ${ file.name }`;
 
-        item.classList.add('text-primary', 'list-none', 'mb-1');
+        item.classList.add('link-primary', 'list-none', 'mb-1');
         item.setAttribute('role', 'button');
     }
 
