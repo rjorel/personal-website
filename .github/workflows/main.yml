@@ -7,8 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  APP_IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
-  LATEST_APP_IMAGE: ghcr.io/${{ github.repository }}:latest
+  APP_IMAGE: ghcr.io/${{ github.repository }}:latest
 
 jobs:
   build_image:
@@ -26,16 +25,14 @@ jobs:
 
       - name: Build and push
         run: |
-          docker pull ${{ env.LATEST_APP_IMAGE }} > /dev/null || true
+          docker pull ${{ env.APP_IMAGE }} > /dev/null || true
 
           docker build . \
-            --cache-from ${{ env.LATEST_APP_IMAGE }} \
+            --cache-from ${{ env.APP_IMAGE }} \
             --file .docker/Dockerfile \
-            --tag ${{ env.APP_IMAGE }} \
-            --tag ${{ env.LATEST_APP_IMAGE }}
+            --tag ${{ env.APP_IMAGE }}
 
           docker push ${{ env.APP_IMAGE }} > /dev/null
-          docker push ${{ env.LATEST_APP_IMAGE }} > /dev/null
 
   deploy_app:
     runs-on: ubuntu-latest
