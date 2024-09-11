@@ -1,12 +1,24 @@
-version: '3.8'
-
 services:
   app:
     image: ${APP_IMAGE}
     restart: always
-    ports:
-      - ${APP_PORT}:80
     volumes:
       - ${APP_REPOSITORY_DIR}:/srv/www/repository-files
     environment:
       APP_ENV: production
+
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=${TRAEFIK_NETWORK}
+
+      - traefik.http.routers.explorer-router.rule=Host(`${APP_HOSTNAME}`)
+      - traefik.http.services.explorer-service.loadBalancer.server.port=8000
+
+    networks:
+      - traefik_network
+      - default
+
+networks:
+  traefik_network:
+    name: ${TRAEFIK_NETWORK}
+    external: true

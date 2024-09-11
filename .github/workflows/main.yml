@@ -61,6 +61,7 @@ jobs:
             cd ${{ secrets.DEPLOY_DIR }}; \
 
             export APP_IMAGE=${{ env.APP_IMAGE }}; \
+            export APP_HOSTNAME=${{ secrets.APP_HOSTNAME }}; \
 
             docker login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} ${{ env.REGISTRY }}; \
 
